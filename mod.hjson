@@ -1,23 +1,23 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "深渊之下UnderTheDeep"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "ud-mod"
 
 #your name
-author: "You"
+author: "Szyf123"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "udmodpack.UDModMain"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "潜入深渊的第一个落脚点"
 
 #the mod version
 version: 1.0
 
 #the minimum game build required to run this mod
-minGameVersion: 160.3
+minGameVersion: 160.1
 
 #this is a java mod
 java: true
