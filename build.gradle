@@ -83,6 +83,7 @@ jar{
     from("assets/"){
         include "**"
     }
+
 }
 
 tasks.register('deploy', Jar){
