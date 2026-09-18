@@ -23,6 +23,10 @@ public class UDModMain extends Mod {
     public void loadContent() {
         UDContent.registerAll();
         addFloorPair(UDContent.shallowBasic, UDContent.shallowBasicInfectious);
+        addFloorPair(UDContent.shallowSand, UDContent.shallowSandInfectious);
+        addFloorPair(UDContent.deepBasic, UDContent.deepBasicInfectious);
+        addFloorPair(UDContent.abyssalBasic, UDContent.abyssalBasicInfectious);
+        addFloorPair(UDContent.abyssalHole, UDContent.abyssalHoleInfectious);
         InfectionManager.init();
     }
 }

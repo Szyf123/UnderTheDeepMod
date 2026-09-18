@@ -35,6 +35,14 @@ public class UDContent {
     // 配对用引用
     public static UdBasicFloor shallowBasic;
     public static UdBasicFloor shallowBasicInfectious;
+    public static UdBasicFloor shallowSand;
+    public static UdBasicFloor shallowSandInfectious;
+    public static UdBasicFloor deepBasic;
+    public static UdBasicFloor deepBasicInfectious;
+    public static UdBasicFloor abyssalBasic;
+    public static UdBasicFloor abyssalBasicInfectious;
+    public static UdBasicFloor abyssalHole;
+    public static UdBasicFloor abyssalHoleInfectious;
 
     public static void registerAll() {
         // 金属地板
@@ -46,25 +54,43 @@ public class UDContent {
         );
         
         // 深渊
-        new UdBasicFloor(
+        abyssalBasic = new UdBasicFloor(
             "ud-abyssal-basic-floor",
             4, ABYSSAL,
             true, true,
             false, true
         );
-        new UdBasicFloor(
+        abyssalHole = new UdBasicFloor(
             "ud-abyssal-hole-floor",
             3, ABYSSAL,
             false, true,
             false, true
         );
+        abyssalBasicInfectious = new UdBasicFloor(
+            "ud-abyssal-basic-infecitious-floor",
+            3, ABYSSAL,
+            true, true,
+            true, false
+        );
+        abyssalHoleInfectious = new UdBasicFloor(
+            "ud-abyssal-hole-infecitious-floor",
+            3, ABYSSAL,
+            true, true,
+            true, false
+        );
 
         // 深海
-        new UdBasicFloor(
+        deepBasic = new UdBasicFloor(
             "ud-deep-basic-floor",
             6, DEEP,
             true, true,
             false, true
+        );
+        deepBasicInfectious = new UdBasicFloor(
+            "ud-deep-basic-infecitious-floor",
+            6, DEEP,
+            true, true,
+            true, false
         );
         
         // 浅海
@@ -74,7 +100,7 @@ public class UDContent {
             true, true,
             false, true
         );
-        new UdBasicFloor(
+        shallowSand = new UdBasicFloor(
             "ud-shallow-sand-floor",
             4, SHALLOW,
             true, true,
@@ -82,8 +108,14 @@ public class UDContent {
         );
         shallowBasicInfectious = new UdBasicFloor(
             "ud-shallow-basic-infecitious-floor",
-            2, SHALLOW,
-            true, false,
+            3, SHALLOW,
+            true, true,
+            true, false
+        );
+        shallowSandInfectious = new UdBasicFloor(
+            "ud-shallow-sand-infecitious-floor",
+            3, SHALLOW,
+            true, true,
             true, false
         );
 
@@ -136,5 +168,8 @@ public class UDContent {
             Liquids.water, 4f,
             30, 1.0f
         );
+
+        // === 感染发射器（基础占位，后续扩展） ===
+        new UDInfectionLauncher("ud-infection-launcher");
     }
 }

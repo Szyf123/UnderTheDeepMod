@@ -1,6 +1,8 @@
 package udmodpack;
 
+import arc.graphics.Blending;
 import arc.graphics.Color;
+import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import mindustry.gen.Building;
 import mindustry.graphics.Drawf;
@@ -217,6 +219,35 @@ public class UDDepressurization extends Block {
             UDDepressurization block = (UDDepressurization) this.block;
             float fullSizePx = block.depressurizationSize * tilesize;
             Drawf.dashSquare(Color.white.cpy().a(0.4f), x, y, fullSizePx);
+        }
+
+        /** 正常运行时渲染净化范围发光线框（加法混合叠加，逐层外扩+降透明度）。 */
+        @Override
+        public void draw() {
+            super.draw();
+
+            if (efficiency <= 0f || !enabled) return;
+
+            UDDepressurization block = (UDDepressurization) this.block;
+            float fullSizePx = block.depressurizationSize * tilesize;
+            float half = fullSizePx / 2f;
+
+            Blending.additive.apply();
+
+            // 核心亮线（最内层，100% alpha）
+            Lines.stroke(1.2f, Color.cyan);
+            Lines.rect(x - half, y - half, fullSizePx, fullSizePx);
+
+            // 外发光 5 层（alpha 10%）
+            for (int i = 0; i < 5; i++) {
+                float width = 2.0f + i * 0.8f;
+                float expand = 0.4f + i * 0.4f;
+                float size = fullSizePx + expand * 2f;
+                Lines.stroke(width, Color.cyan.cpy().a(0.1f));
+                Lines.rect(x - half - expand, y - half - expand, size, size);
+            }
+
+            Blending.normal.apply();
         }
     }
 }
