@@ -2,13 +2,13 @@ package udmodpack;
 
 import arc.Events;
 import arc.math.Mathf;
-import arc.struct.ObjectMap;
 import mindustry.Vars;
 import mindustry.game.EventType.*;
 import mindustry.world.Tile;
 
 /** 全局感染管理：扩散 + 建筑伤害。
- *  净化由减压场建筑自己完成，本类不维护 purifiers 列表。
+ *  净化由减压场建筑自己完成。
+ *  配对数据统一由 UDModMain 维护，本类只读 UDModMain.infectPair。
  *  v160: Events.run(Trigger.afterGameUpdate, ...) 每帧触发 */
 public class InfectionManager {
 
@@ -22,17 +22,8 @@ public class InfectionManager {
     /** 已感染地板对建筑的单次伤害 */
     public static float INFECTION_DAMAGE  = 10.0f;
 
-    // ===== 核心数据 =====
-    /** 原地板 → 感染地板（单向，仅感染扩散用） */
-    public static final ObjectMap<UdBasicFloor, UdBasicFloor> infectPair = new ObjectMap<>();
-
     // ===== 内部状态 =====
     private static int frameCounter = 0;
-
-    /** 注册一对地板，在 UDContent.registerAll() 之后调用。 */
-    public static void addPair(UdBasicFloor clean, UdBasicFloor infected) {
-        infectPair.put(clean, infected);
-    }
 
     /** 在 loadContent() 末尾调用，挂 Trigger.afterGameUpdate 做降频循环。 */
     public static void init() {
@@ -49,7 +40,7 @@ public class InfectionManager {
     /** 每轮循环入口 */
     private static void runCycle() {
         var world = Vars.world;
-        if (world == null || infectPair.isEmpty()) return;
+        if (world == null || UDModMain.infectPair.isEmpty()) return;
 
         int w = world.width();
         int h = world.height();
@@ -70,7 +61,7 @@ public class InfectionManager {
                 tile.build.damage(INFECTION_DAMAGE);
             }
         } else if (ud.canBeInfected) {
-            UdBasicFloor infected = infectPair.get(ud);
+            UdBasicFloor infected = UDModMain.infectPair.get(ud);
             if (infected != null && hasInfectedSource(tile)) {
                 tile.setFloor(infected);
             }
