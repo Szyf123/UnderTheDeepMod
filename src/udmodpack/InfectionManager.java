@@ -16,7 +16,7 @@ public class InfectionManager {
     /** 扩散半径（曼哈顿距离） */
     public static int INFECTION_STRENGTH  = 3;
     /** 每轮处理坐标数 */
-    public static int INFECTION_NUMBER    = 10;
+    public static int INFECTION_NUMBER    = 5;
     /** 循环间隔（帧数），60帧≈1秒 */
     public static int INFECTION_FRAMES    = 50;
     /** 已感染地板对建筑的单次伤害 */

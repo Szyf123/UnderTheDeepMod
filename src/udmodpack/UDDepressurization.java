@@ -140,14 +140,44 @@ public class UDDepressurization extends Block {
         float itemConsumeTimer = 0f;
         /** 净化周期计时器（累计秒） */
         float cureTimer = 0f;
+        /** 深度覆盖轮询计数器（10帧一次） */
+        int depthTickCounter = 0;
+        /** 上一次轮询时是否在工作（默认 false，读档后第一次轮询自然触发 addCoverage） */
+        boolean wasActive = false;
 
         public UDDepressurizationBuilding() {
             super();
         }
 
-        /** 每帧：电力/液体引擎自动扣，物品手动扣，净化每秒随机采样。 */
+        /** 销毁时清理深度覆盖。 */
+        @Override
+        public void onRemoved() {
+            if (wasActive) {
+                UDDepressurization block = (UDDepressurization) this.block;
+                DepthManager.removeCoverage(tileX(), tileY(), block.depressurizationSize);
+                wasActive = false;
+            }
+        }
+
+        /** 每帧：电力/液体引擎自动扣，物品手动扣，净化每秒随机采样，10帧轮询深度覆盖状态。 */
         @Override
         public void updateTile() {
+            // ===== 深度覆盖轮询（10帧一次） =====
+            depthTickCounter++;
+            if (depthTickCounter >= 10) {
+                depthTickCounter = 0;
+                boolean nowActive = efficiency > 0f && enabled;
+                if (nowActive != wasActive) {
+                    UDDepressurization block = (UDDepressurization) this.block;
+                    if (nowActive) {
+                        DepthManager.addCoverage(tileX(), tileY(), block.depressurizationSize);
+                    } else {
+                        DepthManager.removeCoverage(tileX(), tileY(), block.depressurizationSize);
+                    }
+                    wasActive = nowActive;
+                }
+            }
+
             if (efficiency <= 0f || !enabled) return;
 
             UDDepressurization block = (UDDepressurization) this.block;

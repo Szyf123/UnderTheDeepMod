@@ -28,5 +28,6 @@ public class UDModMain extends Mod {
         addFloorPair(UDContent.abyssalBasic, UDContent.abyssalBasicInfectious);
         addFloorPair(UDContent.abyssalHole, UDContent.abyssalHoleInfectious);
         InfectionManager.init();
+        DepthManager.init();
     }
 }
