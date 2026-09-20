@@ -86,7 +86,17 @@ public class UDContent {
     public static UdBasicFloor abyssalHole;
     public static UdBasicFloor abyssalHoleInfectious;
 
+    // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
+    public static UdVoidFloor udTestVoidFloor;
+
     public static void registerAll() {
+        // 测试：边界虚空地板（metal-tiles 风格 4方向 autotile + 128×128 贴图）
+        udTestVoidFloor = new UdVoidFloor(
+            "ud-test-void-floor",
+            true,    // solid: 阻挡陆军
+            60f      // drownTime: 踩上 1 秒溺水
+        );
+
         // 金属地板
         new UdBasicFloor(
             "ud-test-basic-floor",
