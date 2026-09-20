@@ -25,6 +25,7 @@ public class UDModMain extends Mod {
         addFloorPair(UDContent.shallowBasic, UDContent.shallowBasicInfectious);
         addFloorPair(UDContent.shallowSand, UDContent.shallowSandInfectious);
         addFloorPair(UDContent.deepBasic, UDContent.deepBasicInfectious);
+        addFloorPair(UDContent.deepSand, UDContent.deepSandInfectious);
         addFloorPair(UDContent.abyssalBasic, UDContent.abyssalBasicInfectious);
         addFloorPair(UDContent.abyssalHole, UDContent.abyssalHoleInfectious);
         InfectionManager.init();

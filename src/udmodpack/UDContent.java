@@ -32,36 +32,45 @@ public class UDContent {
         Drawf.square(e.x, e.y, half, lineWidth, c);
     });
 
+    // ===== 自定义液体 =====
+    public static UdBasicLiquid freshWater;
+    public static UdBasicLiquid seaweedOil;
+    public static UdBasicLiquid atomicHalogen;
+
+    public static UdCellLiquid rootGel;
+
     // ===== 自定义物品（注册引用） =====
     public static UdBadicItem wreckageAlloy;
     public static UdBadicItem wreckageGlass;
     public static UdBadicItem wreckageFiber;
+    public static UdBadicItem root;
     public static UdBadicItem precCoreFight;
-    public static UdBadicItem precCoreMigrate;
     public static UdBadicItem precCoreExist;
+    public static UdBadicItem precCoreMigrate;
     public static UdBadicItem precCoreFinal;
 
-    // ===== 新物品 =====
-    public static UdBadicItem manganese;
-    public static UdBadicItem iron;
-    public static UdBadicItem nickel;
-    public static UdBadicItem chip;
-    public static UdBadicItem root;
+    public static UdBadicItem seaweedBundle;
     public static UdBadicItem tuberculosis;
+    public static UdBadicItem iron;
+    public static UdBadicItem silicaSand;
+    public static UdBadicItem manganese;
+    public static UdBadicItem aurum;
+    public static UdBadicItem nickel;
+    public static UdBadicItem francium;
+
+    public static UdBadicItem chip;
     public static UdBadicItem manganeseSteel;
-    public static UdBadicItem rlyehAlloy;
-    public static UdBadicItem shieldAlloy;
+    public static UdBadicItem pressedGlass;
     public static UdBadicItem advancedChip;
+    public static UdBadicItem shieldAlloy;
+    public static UdBadicItem rlyehAlloy;
+
     public static UdBadicItem gunpowderChip;
     public static UdBadicItem gunpowderManganeseSteel;
-    public static UdBadicItem gunpowderRlyehAlloy;
     public static UdBadicItem gunpowderAdvancedChip;
     public static UdBadicItem gunpowderShieldAlloy;
-    public static UdBadicItem pressedGlass;
-    public static UdBadicItem silicaSand;
-    public static UdBadicItem aurum;
-    public static UdBadicItem francium;
     public static UdBadicItem gunpowderFrancium;
+    public static UdBadicItem gunpowderRlyehAlloy;
 
     // 配对用引用
     public static UdBasicFloor shallowBasic;
@@ -70,6 +79,8 @@ public class UDContent {
     public static UdBasicFloor shallowSandInfectious;
     public static UdBasicFloor deepBasic;
     public static UdBasicFloor deepBasicInfectious;
+    public static UdBasicFloor deepSand;
+    public static UdBasicFloor deepSandInfectious;
     public static UdBasicFloor abyssalBasic;
     public static UdBasicFloor abyssalBasicInfectious;
     public static UdBasicFloor abyssalHole;
@@ -117,9 +128,21 @@ public class UDContent {
             true, true,
             false, true
         );
+        deepSand = new UdBasicFloor(
+            "ud-deep-sand-floor",
+            3, DEEP,
+            true, true,
+            false, true
+        );
         deepBasicInfectious = new UdBasicFloor(
             "ud-deep-basic-infecitious-floor",
             6, DEEP,
+            true, true,
+            true, false
+        );
+        deepSandInfectious = new UdBasicFloor(
+            "ud-deep-sand-infecitious-floor",
+            3, DEEP,
             true, true,
             true, false
         );
@@ -203,6 +226,13 @@ public class UDContent {
         // === 感染发射器（基础占位，后续扩展） ===
         new UDInfectionLauncher("ud-infection-launcher");
 
+        // === 自定义液体 ===
+        freshWater = new UdBasicLiquid("ud-fresh-water", Color.valueOf("#B2E9FA"), true, 0.5f, 0.4f, 0.5f, true, true);
+        seaweedOil = new UdBasicLiquid("ud-seaweed-oil", Color.valueOf("#E5C258"), false, 0.6f, 0.8f, 0.2f, true, true);
+        atomicHalogen = new UdBasicLiquid("ud-atomic-halogen", Color.valueOf("#C3F71F"), false, 0.2f, 0.4f, 0.5f, false, true);
+
+        rootGel = new UdCellLiquid("ud-root-gel", Color.valueOf("#9578ED"), 0.6f, 0.2f, 0.8f, false, true, 0.5f, 5, Color.valueOf("#D1ADFF"), Color.valueOf("#472982"));
+
         // === 自定义物品 ===
         wreckageAlloy = new UdBadicItem("ud-wreckage-alloy", Color.valueOf("#C3F71F"), 1, false, 3, 20f);
         wreckageGlass = new UdBadicItem("ud-wreckage-glass", Color.valueOf("#C3F71F"), 1, false, 3, 20f);
@@ -214,6 +244,7 @@ public class UDContent {
         precCoreMigrate = new UdBadicItem("ud-prec-core-migrate", Color.valueOf("#665C9F"), 1, false, 0, 0f);
         precCoreFinal = new UdBadicItem("ud-prec-core-final", Color.valueOf("#000000"), 1, false, 0, 0f);
 
+        seaweedBundle = new UdBadicItem("ud-seaweed-bundle", Color.valueOf("#E5C258"), 1, false, 0, 0f);
         tuberculosis = new UdBadicItem("ud-tuberculosis", Color.valueOf("#945C48"), 1, false, 0, 0f);
         iron = new UdBadicItem("ud-iron", Color.valueOf("#7F7F7F"), 1, false, 0, 0f);
         silicaSand = new UdBadicItem("ud-silica-sand", Color.valueOf("#F2EBDB"), 1, false, 0, 0f);
