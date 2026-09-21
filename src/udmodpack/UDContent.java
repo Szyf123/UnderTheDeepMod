@@ -89,6 +89,9 @@ public class UDContent {
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
 
+    // 环境墙
+    public static UdCliff shallowCliff;
+
     public static void registerAll() {
         // 测试：边界虚空地板（metal-tiles 风格 4方向 autotile + 128×128 贴图）
         udTestVoidFloor = new UdVoidFloor(
@@ -96,6 +99,9 @@ public class UDContent {
             true,    // solid: 阻挡陆军
             60f      // drownTime: 踩上 1 秒溺水
         );
+
+        // 浅海环境墙：8 张 64×64 piece，加载时合成 256 种 autotile cell
+        shallowCliff = new UdCliff("ud-shallow-cliff");
 
         // 金属地板
         new UdBasicFloor(
