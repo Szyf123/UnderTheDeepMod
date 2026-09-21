@@ -41,12 +41,16 @@ public class UdCliff extends Block {
     /** 构造函数传入的原始名（不带 Mindustry 自动加的 mod 前缀） */
     private final String baseName;
 
+    /** 邻居 floor 的 depth 等于此值时视为"相同"（不渲染 edge piece）。 */
+    private final byte depthThreshold;
+
     /** 8 个 piece 的 AtlasRegion，下标=bit 位置 */
     private TextureRegion[] pieceRegions;
 
-    public UdCliff(String name) {
+    public UdCliff(String name, byte depthThreshold) {
         super(name);
         this.baseName = name;
+        this.depthThreshold = depthThreshold;
 
         this.solid = true;
         this.breakable = false;
@@ -111,8 +115,8 @@ public class UdCliff extends Block {
         Tile other = tile.nearby(dx, dy);
         if (other == null) return false;                              // null 邻居 → 不同 → 渲染 piece
         if (other.block() == this) return true;                       // 同类 cliff → 相同
-        // 新增：相邻 floor 的 depth==0 也视为相同（不渲染边缘 piece）
+        // 新增：相邻 floor 的 depth 等于 depthThreshold 也视为相同（不渲染边缘 piece）
         byte depth = DepthManager.getDefaultDepth(other.floor());
-        return depth == DepthManager.SHALLOW;
+        return depth == depthThreshold;
     }
 }

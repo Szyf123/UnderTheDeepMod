@@ -91,6 +91,7 @@ public class UDContent {
 
     // 环境墙
     public static UdCliff shallowCliff;
+    public static UdCliff deepCliff;
 
     public static void registerAll() {
         // 测试：边界虚空地板（metal-tiles 风格 4方向 autotile + 128×128 贴图）
@@ -100,8 +101,9 @@ public class UDContent {
             60f      // drownTime: 踩上 1 秒溺水
         );
 
-        // 浅海环境墙：8 张 64×64 piece，加载时合成 256 种 autotile cell
-        shallowCliff = new UdCliff("ud-shallow-cliff");
+        // 浅海环境墙：8 张 64×64 piece，depth==SHALLOW(0) 的邻居视为相同 → 不渲染 edge
+        shallowCliff = new UdCliff("ud-shallow-cliff", DepthManager.SHALLOW);
+        deepCliff = new UdCliff("ud-deep-cliff", DepthManager.DEEP);
 
         // 金属地板
         new UdBasicFloor(
