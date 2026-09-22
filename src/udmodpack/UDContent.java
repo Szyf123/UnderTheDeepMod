@@ -5,6 +5,7 @@ import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.entities.Effect;
 import mindustry.graphics.Drawf;
+import mindustry.graphics.CacheLayer;
 import mindustry.type.ItemStack;
 
 import static mindustry.Vars.tilesize;
@@ -93,17 +94,24 @@ public class UDContent {
     public static UdCliff shallowCliff;
     public static UdCliff deepCliff;
 
+    // 液体地板
+    public static UdBasicLiquidFloor deepHalogenOcean;
+
     public static void registerAll() {
-        // 测试：边界虚空地板（metal-tiles 风格 4方向 autotile + 128×128 贴图）
-        udTestVoidFloor = new UdVoidFloor(
-            "ud-test-void-floor",
-            true,    // solid: 阻挡陆军
-            60f      // drownTime: 踩上 1 秒溺水
-        );
+        // 测试：虚空地板（tileable 平铺，solid=true + drownTime=30f 内置）
+        udTestVoidFloor = new UdVoidFloor("ud-test-void-floor");
 
         // 浅海环境墙：8 张 64×64 piece，depth==SHALLOW(0) 的邻居视为相同 → 不渲染 edge
         shallowCliff = new UdCliff("ud-shallow-cliff", DepthManager.SHALLOW);
         deepCliff = new UdCliff("ud-deep-cliff", DepthManager.DEEP);
+
+        // 深海卤素海洋：atomicHalogen 液体，DEEP 深度
+        deepHalogenOcean = new UdBasicLiquidFloor(
+            "ud-deep-halogen-ocean",
+            3, DEEP,
+            atomicHalogen,
+            true, true
+        );
 
         // 金属地板
         new UdBasicFloor(
