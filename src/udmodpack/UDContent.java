@@ -87,6 +87,10 @@ public class UDContent {
     public static UdBasicFloor abyssalHole;
     public static UdBasicFloor abyssalHoleInfectious;
 
+    // 矿石叠加块
+    public static UdBasicOre ironOre;
+    public static UdBasicOre aurumOre;
+
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
 
@@ -108,7 +112,7 @@ public class UDContent {
         // 深海卤素海洋：atomicHalogen 液体，DEEP 深度
         deepHalogenOcean = new UdBasicLiquidFloor(
             "ud-deep-halogen-ocean",
-            3, DEEP,
+            4, DEEP,
             atomicHalogen,
             true, true
         );
@@ -160,6 +164,7 @@ public class UDContent {
             true, true,
             false, true
         );
+        deepSand.itemDrop = silicaSand;
         deepBasicInfectious = new UdBasicFloor(
             "ud-deep-basic-infecitious-floor",
             6, DEEP,
@@ -186,6 +191,7 @@ public class UDContent {
             true, true,
             false, true
         );
+        shallowSand.itemDrop = silicaSand;
         shallowBasicInfectious = new UdBasicFloor(
             "ud-shallow-basic-infecitious-floor",
             3, SHALLOW,
@@ -273,7 +279,7 @@ public class UDContent {
         seaweedBundle = new UdBadicItem("ud-seaweed-bundle", Color.valueOf("#E5C258"), 1, false, 0, 0f);
         tuberculosis = new UdBadicItem("ud-tuberculosis", Color.valueOf("#945C48"), 1, false, 0, 0f);
         iron = new UdBadicItem("ud-iron", Color.valueOf("#7F7F7F"), 1, false, 0, 0f);
-        silicaSand = new UdBadicItem("ud-silica-sand", Color.valueOf("#F2EBDB"), 1, false, 0, 0f);
+        silicaSand = new UdBadicItem("ud-silica-sand", Color.valueOf("#F2EBDB"), 1, true, 0, 0f);
         manganese = new UdBadicItem("ud-manganese", Color.valueOf("#A4DE79"), 1, false, 0, 0f);
         aurum = new UdBadicItem("ud-aurum", Color.valueOf("#F6F742"), 1, false, 0, 0f);
         nickel = new UdBadicItem("ud-nickel", Color.valueOf("#82B482"), 1, false, 0, 0f);
@@ -293,6 +299,10 @@ public class UDContent {
         gunpowderFrancium = new UdBadicItem("ud-gunpowder-francium", Color.valueOf("#9EDECC"), 1, false, 0, 0f);
         gunpowderRlyehAlloy = new UdBadicItem("ud-gunpowder-rlyeh-alloy", Color.valueOf("#216AEB"), 1, false, 0, 0f);
         
+        // === 矿石叠加块 ===
+        ironOre = new UdBasicOre("ud-iron-ore", iron, 4);
+        aurumOre = new UdBasicOre("ud-aurum-ore", aurum, 4);
+
         // === 精准核心合成厂（多配方工厂） ===
         new UdPrecCoreFactory("ud-prec-core-factory");
 
