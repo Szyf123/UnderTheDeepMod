@@ -90,6 +90,11 @@ public class UDContent {
     // 矿石叠加块
     public static UdBasicOre ironOre;
     public static UdBasicOre aurumOre;
+    public static UdBasicOre tuberculosisOre;
+    public static UdBasicOre nickelOre;
+    public static UdBasicOre franciumOre;
+
+    public static UdCustomDrill hydraulicDrill;
 
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
@@ -164,7 +169,8 @@ public class UDContent {
             true, true,
             false, true
         );
-        deepSand.itemDrop = silicaSand;
+        // itemDrop 赋值移到 silicaSand 注册之后
+        deepSand.playerUnmineable = true;
         deepBasicInfectious = new UdBasicFloor(
             "ud-deep-basic-infecitious-floor",
             6, DEEP,
@@ -191,7 +197,8 @@ public class UDContent {
             true, true,
             false, true
         );
-        shallowSand.itemDrop = silicaSand;
+        // itemDrop 赋值移到 silicaSand 注册之后
+        shallowSand.playerUnmineable = true;
         shallowBasicInfectious = new UdBasicFloor(
             "ud-shallow-basic-infecitious-floor",
             3, SHALLOW,
@@ -276,14 +283,14 @@ public class UDContent {
         precCoreMigrate = new UdBadicItem("ud-prec-core-migrate", Color.valueOf("#665C9F"), 1, false, 0, 0f);
         precCoreFinal = new UdBadicItem("ud-prec-core-final", Color.valueOf("#000000"), 1, false, 0, 0f);
 
-        seaweedBundle = new UdBadicItem("ud-seaweed-bundle", Color.valueOf("#E5C258"), 1, false, 0, 0f);
+        seaweedBundle = new UdBadicItem("ud-seaweed-bundle", Color.valueOf("#E5C258"), 5, false, 0, 0f);
         tuberculosis = new UdBadicItem("ud-tuberculosis", Color.valueOf("#945C48"), 1, false, 0, 0f);
         iron = new UdBadicItem("ud-iron", Color.valueOf("#7F7F7F"), 1, false, 0, 0f);
         silicaSand = new UdBadicItem("ud-silica-sand", Color.valueOf("#F2EBDB"), 1, true, 0, 0f);
-        manganese = new UdBadicItem("ud-manganese", Color.valueOf("#A4DE79"), 1, false, 0, 0f);
-        aurum = new UdBadicItem("ud-aurum", Color.valueOf("#F6F742"), 1, false, 0, 0f);
-        nickel = new UdBadicItem("ud-nickel", Color.valueOf("#82B482"), 1, false, 0, 0f);
-        francium = new UdBadicItem("ud-francium", Color.valueOf("#9EDECC"), 1, false, 0, 0f);
+        manganese = new UdBadicItem("ud-manganese", Color.valueOf("#A4DE79"), 5, false, 0, 0f);
+        aurum = new UdBadicItem("ud-aurum", Color.valueOf("#F6F742"), 3, false, 0, 0f);
+        nickel = new UdBadicItem("ud-nickel", Color.valueOf("#82B482"), 3, false, 0, 0f);
+        francium = new UdBadicItem("ud-francium", Color.valueOf("#9EDECC"), 4, false, 0, 0f);
 
         chip = new UdBadicItem("ud-chip", Color.valueOf("#FFB143"), 1, false, 0, 0f);
         manganeseSteel = new UdBadicItem("ud-manganese-steel", Color.valueOf("#8282B4"), 1, false, 0, 0f);
@@ -298,10 +305,27 @@ public class UDContent {
         gunpowderShieldAlloy = new UdBadicItem("ud-gunpowder-shield-alloy", Color.valueOf("#D6A16E"), 1, false, 0, 0f);
         gunpowderFrancium = new UdBadicItem("ud-gunpowder-francium", Color.valueOf("#9EDECC"), 1, false, 0, 0f);
         gunpowderRlyehAlloy = new UdBadicItem("ud-gunpowder-rlyeh-alloy", Color.valueOf("#216AEB"), 1, false, 0, 0f);
-        
+
+        // === Floor 的 itemDrop 赋值（必须在所有 Item 注册之后！） ===
+        deepSand.itemDrop = silicaSand;
+        shallowSand.itemDrop = silicaSand;
+
         // === 矿石叠加块 ===
         ironOre = new UdBasicOre("ud-iron-ore", iron, 4);
         aurumOre = new UdBasicOre("ud-aurum-ore", aurum, 4);
+        tuberculosisOre = new UdBasicOre("ud-tuberculosis-ore", tuberculosis, 4);
+        nickelOre = new UdBasicOre("ud-nickel-ore", nickel, 4);
+        franciumOre = new UdBasicOre("ud-francium-ore", francium, 4);
+
+        // === 自定义钻头 ===
+        hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
+            Liquids.water, 1.6f,
+            iron, 200f,
+            tuberculosis, 200f,
+            silicaSand, 115f,
+            new mindustry.type.ItemStack(mindustry.content.Items.copper, 30),
+            new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
+        );
 
         // === 精准核心合成厂（多配方工厂） ===
         new UdPrecCoreFactory("ud-prec-core-factory");

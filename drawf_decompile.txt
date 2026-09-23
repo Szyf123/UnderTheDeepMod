@@ -1,0 +1,2068 @@
+﻿Compiled from "Drawf.java"
+public class mindustry.graphics.Drawf {
+  public mindustry.graphics.Drawf();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void text(java.lang.String, float, float, arc.graphics.Color);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fconst_0
+       4: aload_3
+       5: fconst_1
+       6: iconst_1
+       7: invokestatic  #11                 // Method text:(Ljava/lang/String;FFFLarc/graphics/Color;FI)V
+      10: return
+
+  public static void text(java.lang.String, float, float, arc.graphics.Color, float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fconst_0
+       4: aload_3
+       5: fload         4
+       7: iconst_1
+       8: invokestatic  #11                 // Method text:(Ljava/lang/String;FFFLarc/graphics/Color;FI)V
+      11: return
+
+  public static void text(java.lang.String, float, float, arc.graphics.Color, float, int);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fconst_0
+       4: aload_3
+       5: fload         4
+       7: iload         5
+       9: invokestatic  #11                 // Method text:(Ljava/lang/String;FFFLarc/graphics/Color;FI)V
+      12: return
+
+  public static void text(java.lang.String, float, float, float, arc.graphics.Color, float, int);
+    Code:
+       0: getstatic     #17                 // Field mindustry/ui/Fonts.outline:Larc/graphics/g2d/Font;
+       3: astore        7
+       5: aload         7
+       7: invokevirtual #23                 // Method arc/graphics/g2d/Font.usesIntegerPositions:()Z
+      10: istore        8
+      12: aload         7
+      14: iconst_0
+      15: invokevirtual #29                 // Method arc/graphics/g2d/Font.setUseIntegerPositions:(Z)V
+      18: aload         7
+      20: invokevirtual #33                 // Method arc/graphics/g2d/Font.getData:()Larc/graphics/g2d/Font$FontData;
+      23: ldc           #37                 // float 0.25f
+      25: fconst_1
+      26: invokestatic  #38                 // Method arc/scene/ui/layout/Scl.scl:(F)F
+      29: fdiv
+      30: fload         5
+      32: fmul
+      33: invokevirtual #44                 // Method arc/graphics/g2d/Font$FontData.setScale:(F)V
+      36: aload         7
+      38: aload         4
+      40: invokevirtual #50                 // Method arc/graphics/g2d/Font.setColor:(Larc/graphics/Color;)V
+      43: aload         7
+      45: invokevirtual #54                 // Method arc/graphics/g2d/Font.getCache:()Larc/graphics/g2d/FontCache;
+      48: invokevirtual #58                 // Method arc/graphics/g2d/FontCache.clear:()V
+      51: aload         7
+      53: invokevirtual #54                 // Method arc/graphics/g2d/Font.getCache:()Larc/graphics/g2d/FontCache;
+      56: aload_0
+      57: fload_1
+      58: fload_2
+      59: fconst_0
+      60: iload         6
+      62: iconst_0
+      63: invokevirtual #63                 // Method arc/graphics/g2d/FontCache.addText:(Ljava/lang/CharSequence;FFFIZ)Larc/graphics/g2d/GlyphLayout;
+      66: astore        9
+      68: fload_3
+      69: fconst_0
+      70: fcmpl
+      71: ifeq          120
+      74: iload         6
+      76: iconst_4
+      77: iand
+      78: ifeq          85
+      81: fconst_1
+      82: goto          98
+      85: iload         6
+      87: iconst_2
+      88: iand
+      89: ifeq          96
+      92: fconst_0
+      93: goto          98
+      96: ldc           #67                 // float 0.5f
+      98: fstore        10
+     100: aload         7
+     102: invokevirtual #54                 // Method arc/graphics/g2d/Font.getCache:()Larc/graphics/g2d/FontCache;
+     105: fload_3
+     106: fload_1
+     107: fload_2
+     108: aload         9
+     110: getfield      #68                 // Field arc/graphics/g2d/GlyphLayout.height:F
+     113: fload         10
+     115: fmul
+     116: fsub
+     117: invokevirtual #74                 // Method arc/graphics/g2d/FontCache.setRotation:(FFF)V
+     120: aload         4
+     122: getfield      #78                 // Field arc/graphics/Color.a:F
+     125: fconst_1
+     126: fcmpg
+     127: ifge          143
+     130: aload         7
+     132: invokevirtual #54                 // Method arc/graphics/g2d/Font.getCache:()Larc/graphics/g2d/FontCache;
+     135: aload         4
+     137: getfield      #78                 // Field arc/graphics/Color.a:F
+     140: invokevirtual #83                 // Method arc/graphics/g2d/FontCache.setAlphas:(F)V
+     143: aload         7
+     145: invokevirtual #54                 // Method arc/graphics/g2d/Font.getCache:()Larc/graphics/g2d/FontCache;
+     148: invokevirtual #86                 // Method arc/graphics/g2d/FontCache.draw:()V
+     151: aload         7
+     153: invokevirtual #33                 // Method arc/graphics/g2d/Font.getData:()Larc/graphics/g2d/Font$FontData;
+     156: fconst_1
+     157: invokevirtual #44                 // Method arc/graphics/g2d/Font$FontData.setScale:(F)V
+     160: aload         7
+     162: getstatic     #89                 // Field arc/graphics/Color.white:Larc/graphics/Color;
+     165: invokevirtual #50                 // Method arc/graphics/g2d/Font.setColor:(Larc/graphics/Color;)V
+     168: aload         7
+     170: iload         8
+     172: invokevirtual #29                 // Method arc/graphics/g2d/Font.setUseIntegerPositions:(Z)V
+     175: return
+
+  public static void checkBleed(arc.graphics.Pixmap);
+    Code:
+       0: getstatic     #93                 // Field arc/Core.settings:Larc/Settings;
+       3: ldc           #99                 // String linear
+       5: iconst_1
+       6: invokevirtual #101                // Method arc/Settings.getBool:(Ljava/lang/String;Z)Z
+       9: ifeq          17
+      12: aload_0
+      13: invokestatic  #107                // Method arc/graphics/Pixmaps.bleed:(Larc/graphics/Pixmap;)Larc/graphics/Pixmap;
+      16: pop
+      17: return
+
+  public static void underwater(java.lang.Runnable);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: getfield      #117                // Field mindustry/core/Renderer.blocks:Lmindustry/graphics/BlockRenderer;
+       6: getfield      #123                // Field mindustry/graphics/BlockRenderer.floor:Lmindustry/graphics/FloorRenderer;
+       9: aload_0
+      10: invokevirtual #129                // Method mindustry/graphics/FloorRenderer.drawUnderwater:(Ljava/lang/Runnable;)V
+      13: return
+
+  public static void flame(float, float, int, float, float, float, float);
+    Code:
+       0: fload         4
+       2: fload         6
+       4: fmul
+       5: fstore        7
+       7: fload         4
+       9: fconst_1
+      10: fload         6
+      12: fsub
+      13: fmul
+      14: fstore        8
+      16: getstatic     #135                // Field points:Larc/struct/FloatSeq;
+      19: invokevirtual #139                // Method arc/struct/FloatSeq.clear:()V
+      22: iconst_0
+      23: istore        9
+      25: iload         9
+      27: iload_2
+      28: if_icmpge     89
+      31: ldc           #142                // float 90.0f
+      33: ldc           #143                // float 180.0f
+      35: iload         9
+      37: i2f
+      38: fmul
+      39: iload_2
+      40: i2f
+      41: fdiv
+      42: fadd
+      43: fstore        10
+      45: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      48: fload         10
+      50: fload         5
+      52: invokevirtual #150                // Method arc/math/geom/Vec2.trnsExact:(FF)Larc/math/geom/Vec2;
+      55: pop
+      56: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      59: getfield      #156                // Field arc/math/geom/Vec2.x:F
+      62: fload         5
+      64: fadd
+      65: fload         5
+      67: fdiv
+      68: fload         7
+      70: fmul
+      71: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      74: getfield      #159                // Field arc/math/geom/Vec2.y:F
+      77: fload_0
+      78: fload_1
+      79: fload_3
+      80: invokestatic  #162                // Method point:(FFFFF)V
+      83: iinc          9, 1
+      86: goto          25
+      89: iconst_0
+      90: istore        9
+      92: iload         9
+      94: iload_2
+      95: if_icmpge     156
+      98: ldc           #166                // float -90.0f
+     100: ldc           #143                // float 180.0f
+     102: iload         9
+     104: i2f
+     105: fmul
+     106: iload_2
+     107: i2f
+     108: fdiv
+     109: fadd
+     110: fstore        10
+     112: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+     115: fload         10
+     117: fload         5
+     119: invokevirtual #150                // Method arc/math/geom/Vec2.trnsExact:(FF)Larc/math/geom/Vec2;
+     122: pop
+     123: fload         7
+     125: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+     128: getfield      #156                // Field arc/math/geom/Vec2.x:F
+     131: fload         5
+     133: fdiv
+     134: fload         8
+     136: fmul
+     137: fadd
+     138: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+     141: getfield      #159                // Field arc/math/geom/Vec2.y:F
+     144: fload_0
+     145: fload_1
+     146: fload_3
+     147: invokestatic  #162                // Method point:(FFFFF)V
+     150: iinc          9, 1
+     153: goto          92
+     156: getstatic     #135                // Field points:Larc/struct/FloatSeq;
+     159: invokestatic  #167                // Method arc/graphics/g2d/Fill.poly:(Larc/struct/FloatSeq;)V
+     162: return
+
+  public static void flameFront(float, float, int, float, float, float);
+    Code:
+       0: iload_2
+       1: iconst_2
+       2: invokestatic  #173                // Method arc/math/Mathf.round:(II)I
+       5: iconst_1
+       6: iadd
+       7: istore_2
+       8: getstatic     #135                // Field points:Larc/struct/FloatSeq;
+      11: invokevirtual #139                // Method arc/struct/FloatSeq.clear:()V
+      14: iconst_0
+      15: istore        6
+      17: iload         6
+      19: iload_2
+      20: if_icmpgt     78
+      23: ldc           #166                // float -90.0f
+      25: ldc           #143                // float 180.0f
+      27: iload         6
+      29: i2f
+      30: fmul
+      31: iload_2
+      32: i2f
+      33: fdiv
+      34: fadd
+      35: fstore        7
+      37: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      40: fload         7
+      42: fload         5
+      44: invokevirtual #150                // Method arc/math/geom/Vec2.trnsExact:(FF)Larc/math/geom/Vec2;
+      47: pop
+      48: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      51: getfield      #156                // Field arc/math/geom/Vec2.x:F
+      54: fload         5
+      56: fdiv
+      57: fload         4
+      59: fmul
+      60: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      63: getfield      #159                // Field arc/math/geom/Vec2.y:F
+      66: fload_0
+      67: fload_1
+      68: fload_3
+      69: invokestatic  #162                // Method point:(FFFFF)V
+      72: iinc          6, 1
+      75: goto          17
+      78: getstatic     #135                // Field points:Larc/struct/FloatSeq;
+      81: invokestatic  #167                // Method arc/graphics/g2d/Fill.poly:(Larc/struct/FloatSeq;)V
+      84: return
+
+  public static void buildBeam(float, float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: invokestatic  #191                // Method arc/math/Angles.angle:(FFFF)F
+       7: fstore        5
+       9: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      12: iconst_0
+      13: aaload
+      14: fload_2
+      15: fload         4
+      17: fsub
+      18: fload_3
+      19: fload         4
+      21: fsub
+      22: invokevirtual #179                // Method arc/math/geom/Vec2.set:(FF)Larc/math/geom/Vec2;
+      25: pop
+      26: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      29: iconst_1
+      30: aaload
+      31: fload_2
+      32: fload         4
+      34: fadd
+      35: fload_3
+      36: fload         4
+      38: fsub
+      39: invokevirtual #179                // Method arc/math/geom/Vec2.set:(FF)Larc/math/geom/Vec2;
+      42: pop
+      43: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      46: iconst_2
+      47: aaload
+      48: fload_2
+      49: fload         4
+      51: fsub
+      52: fload_3
+      53: fload         4
+      55: fadd
+      56: invokevirtual #179                // Method arc/math/geom/Vec2.set:(FF)Larc/math/geom/Vec2;
+      59: pop
+      60: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      63: iconst_3
+      64: aaload
+      65: fload_2
+      66: fload         4
+      68: fadd
+      69: fload_3
+      70: fload         4
+      72: fadd
+      73: invokevirtual #179                // Method arc/math/geom/Vec2.set:(FF)Larc/math/geom/Vec2;
+      76: pop
+      77: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      80: fload_0
+      81: fload_1
+      82: fload         5
+      84: invokedynamic #201,  0            // InvokeDynamic #0:get:(FFF)Larc/func/Floatf;
+      89: invokestatic  #205                // Method arc/util/Structs.comparingFloat:(Larc/func/Floatf;)Ljava/util/Comparator;
+      92: invokestatic  #211                // Method java/util/Arrays.sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+      95: fload_0
+      96: fload_1
+      97: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     100: invokestatic  #217                // Method arc/math/geom/Geometry.findClosest:(FF[Larc/math/geom/Position;)Larc/math/geom/Position;
+     103: checkcast     #151                // class arc/math/geom/Vec2
+     106: astore        6
+     108: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     111: iconst_0
+     112: aaload
+     113: getfield      #156                // Field arc/math/geom/Vec2.x:F
+     116: fstore        7
+     118: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     121: iconst_0
+     122: aaload
+     123: getfield      #159                // Field arc/math/geom/Vec2.y:F
+     126: fstore        8
+     128: aload         6
+     130: getfield      #156                // Field arc/math/geom/Vec2.x:F
+     133: fstore        9
+     135: aload         6
+     137: getfield      #159                // Field arc/math/geom/Vec2.y:F
+     140: fstore        10
+     142: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     145: iconst_1
+     146: aaload
+     147: getfield      #156                // Field arc/math/geom/Vec2.x:F
+     150: fstore        11
+     152: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     155: iconst_1
+     156: aaload
+     157: getfield      #159                // Field arc/math/geom/Vec2.y:F
+     160: fstore        12
+     162: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+     165: getfield      #223                // Field mindustry/core/Renderer.animateShields:Z
+     168: ifeq          236
+     171: aload         6
+     173: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     176: iconst_0
+     177: aaload
+     178: if_acmpeq     220
+     181: aload         6
+     183: getstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+     186: iconst_1
+     187: aaload
+     188: if_acmpeq     220
+     191: fload_0
+     192: fload_1
+     193: fload         7
+     195: fload         8
+     197: fload         9
+     199: fload         10
+     201: invokestatic  #227                // Method arc/graphics/g2d/Fill.tri:(FFFFFF)V
+     204: fload_0
+     205: fload_1
+     206: fload         11
+     208: fload         12
+     210: fload         9
+     212: fload         10
+     214: invokestatic  #227                // Method arc/graphics/g2d/Fill.tri:(FFFFFF)V
+     217: goto          254
+     220: fload_0
+     221: fload_1
+     222: fload         7
+     224: fload         8
+     226: fload         11
+     228: fload         12
+     230: invokestatic  #227                // Method arc/graphics/g2d/Fill.tri:(FFFFFF)V
+     233: goto          254
+     236: fload_0
+     237: fload_1
+     238: fload         7
+     240: fload         8
+     242: invokestatic  #231                // Method arc/graphics/g2d/Lines.line:(FFFF)V
+     245: fload_0
+     246: fload_1
+     247: fload         11
+     249: fload         12
+     251: invokestatic  #231                // Method arc/graphics/g2d/Lines.line:(FFFF)V
+     254: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: fload_2
+       3: fload_3
+       4: fconst_0
+       5: ldc           #239                // float 31.0f
+       7: invokestatic  #240                // Method additive:(Larc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFF)V
+      10: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: fload_2
+       3: fload_3
+       4: fload         4
+       6: ldc           #239                // float 31.0f
+       8: invokestatic  #240                // Method additive:(Larc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFF)V
+      11: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: fconst_1
+       3: fload_2
+       4: fload_3
+       5: fload         4
+       7: fload         5
+       9: invokestatic  #244                // Method additive:(Larc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFFF)V
+      12: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float, float, float);
+    Code:
+       0: invokestatic  #247                // Method arc/graphics/g2d/Draw.z:()F
+       3: fstore        8
+       5: fload         7
+       7: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      10: aload_1
+      11: fload_2
+      12: aload_1
+      13: getfield      #78                 // Field arc/graphics/Color.a:F
+      16: fmul
+      17: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      20: getstatic     #259                // Field arc/graphics/Blending.additive:Larc/graphics/Blending;
+      23: invokestatic  #264                // Method arc/graphics/g2d/Draw.blend:(Larc/graphics/Blending;)V
+      26: aload_0
+      27: fload_3
+      28: fload         4
+      30: fload         5
+      32: fload         6
+      34: fconst_0
+      35: invokestatic  #268                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFFFF)V
+      38: invokestatic  #272                // Method arc/graphics/g2d/Draw.blend:()V
+      41: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      44: fload         8
+      46: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      49: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float, float);
+    Code:
+       0: invokestatic  #247                // Method arc/graphics/g2d/Draw.z:()F
+       3: fstore        7
+       5: fload         6
+       7: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      10: aload_1
+      11: fload_2
+      12: aload_1
+      13: getfield      #78                 // Field arc/graphics/Color.a:F
+      16: fmul
+      17: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      20: getstatic     #259                // Field arc/graphics/Blending.additive:Larc/graphics/Blending;
+      23: invokestatic  #264                // Method arc/graphics/g2d/Draw.blend:(Larc/graphics/Blending;)V
+      26: aload_0
+      27: fload_3
+      28: fload         4
+      30: fload         5
+      32: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      35: invokestatic  #272                // Method arc/graphics/g2d/Draw.blend:()V
+      38: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      41: fload         7
+      43: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      46: return
+
+  public static void additive(arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float, float, float, float);
+    Code:
+       0: invokestatic  #247                // Method arc/graphics/g2d/Draw.z:()F
+       3: fstore        9
+       5: aload_0
+       6: getfield      #279                // Field arc/graphics/g2d/TextureRegion.width:I
+       9: i2f
+      10: aload_0
+      11: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+      14: fmul
+      15: getstatic     #287                // Field arc/graphics/g2d/Draw.xscl:F
+      18: fmul
+      19: fstore        10
+      21: aload_0
+      22: getfield      #290                // Field arc/graphics/g2d/TextureRegion.height:I
+      25: i2f
+      26: aload_0
+      27: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+      30: fmul
+      31: getstatic     #292                // Field arc/graphics/g2d/Draw.yscl:F
+      34: fmul
+      35: fstore        11
+      37: fload         6
+      39: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      42: aload_1
+      43: fload_2
+      44: aload_1
+      45: getfield      #78                 // Field arc/graphics/Color.a:F
+      48: fmul
+      49: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      52: getstatic     #259                // Field arc/graphics/Blending.additive:Larc/graphics/Blending;
+      55: invokestatic  #264                // Method arc/graphics/g2d/Draw.blend:(Larc/graphics/Blending;)V
+      58: aload_0
+      59: fload_3
+      60: fload         4
+      62: fload         10
+      64: fload         11
+      66: fload         10
+      68: fconst_2
+      69: fdiv
+      70: fload         7
+      72: aload_0
+      73: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+      76: fmul
+      77: getstatic     #287                // Field arc/graphics/g2d/Draw.xscl:F
+      80: fmul
+      81: fadd
+      82: fload         11
+      84: fconst_2
+      85: fdiv
+      86: fload         8
+      88: aload_0
+      89: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+      92: fmul
+      93: getstatic     #292                // Field arc/graphics/g2d/Draw.yscl:F
+      96: fmul
+      97: fadd
+      98: fload         5
+     100: invokestatic  #295                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFFFFFF)V
+     103: invokestatic  #272                // Method arc/graphics/g2d/Draw.blend:()V
+     106: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+     109: fload         9
+     111: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+     114: return
+
+  public static void limitLine(arc.math.geom.Position, arc.math.geom.Position, float, float, arc.graphics.Color);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: fload_2
+       3: fload_3
+       4: fadd
+       5: invokeinterface #298,  3          // InterfaceMethod arc/math/geom/Position.within:(Larc/math/geom/Position;F)Z
+      10: ifeq          14
+      13: return
+      14: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      17: aload_1
+      18: invokevirtual #304                // Method arc/math/geom/Vec2.set:(Larc/math/geom/Position;)Larc/math/geom/Vec2;
+      21: aload_0
+      22: invokevirtual #307                // Method arc/math/geom/Vec2.sub:(Larc/math/geom/Position;)Larc/math/geom/Vec2;
+      25: fload_2
+      26: invokevirtual #310                // Method arc/math/geom/Vec2.setLength:(F)Larc/math/geom/Vec2;
+      29: pop
+      30: getstatic     #313                // Field arc/util/Tmp.v2:Larc/math/geom/Vec2;
+      33: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      36: invokevirtual #316                // Method arc/math/geom/Vec2.set:(Larc/math/geom/Vec2;)Larc/math/geom/Vec2;
+      39: ldc_w         #319                // float -1.0f
+      42: invokevirtual #320                // Method arc/math/geom/Vec2.scl:(F)Larc/math/geom/Vec2;
+      45: fload_3
+      46: invokevirtual #310                // Method arc/math/geom/Vec2.setLength:(F)Larc/math/geom/Vec2;
+      49: pop
+      50: aload         4
+      52: aload_0
+      53: invokeinterface #322,  1          // InterfaceMethod arc/math/geom/Position.getX:()F
+      58: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      61: getfield      #156                // Field arc/math/geom/Vec2.x:F
+      64: fadd
+      65: aload_0
+      66: invokeinterface #325,  1          // InterfaceMethod arc/math/geom/Position.getY:()F
+      71: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      74: getfield      #159                // Field arc/math/geom/Vec2.y:F
+      77: fadd
+      78: aload_1
+      79: invokeinterface #322,  1          // InterfaceMethod arc/math/geom/Position.getX:()F
+      84: getstatic     #313                // Field arc/util/Tmp.v2:Larc/math/geom/Vec2;
+      87: getfield      #156                // Field arc/math/geom/Vec2.x:F
+      90: fadd
+      91: aload_1
+      92: invokeinterface #325,  1          // InterfaceMethod arc/math/geom/Position.getY:()F
+      97: getstatic     #313                // Field arc/util/Tmp.v2:Larc/math/geom/Vec2;
+     100: getfield      #159                // Field arc/math/geom/Vec2.y:F
+     103: fadd
+     104: invokestatic  #328                // Method line:(Larc/graphics/Color;FFFF)V
+     107: return
+
+  public static void limitLine(arc.math.geom.Position, arc.math.geom.Position, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: fload_2
+       3: fload_3
+       4: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+       7: invokestatic  #336                // Method limitLine:(Larc/math/geom/Position;Larc/math/geom/Position;FFLarc/graphics/Color;)V
+      10: return
+
+  public static void dashLineDst(arc.graphics.Color, float, float, float, float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: fload         4
+       6: fload_1
+       7: fload_2
+       8: fload_3
+       9: fload         4
+      11: invokestatic  #340                // Method arc/math/Mathf.dst:(FFFF)F
+      14: ldc_w         #343                // float 8.0f
+      17: fdiv
+      18: ldc_w         #344                // float 1.6f
+      21: fmul
+      22: f2i
+      23: invokestatic  #345                // Method dashLine:(Larc/graphics/Color;FFFFI)V
+      26: return
+
+  public static void dashLine(arc.graphics.Color, float, float, float, float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: fload         4
+       6: fload_1
+       7: fload_3
+       8: fsub
+       9: invokestatic  #349                // Method java/lang/Math.abs:(F)F
+      12: fload_2
+      13: fload         4
+      15: fsub
+      16: invokestatic  #349                // Method java/lang/Math.abs:(F)F
+      19: invokestatic  #354                // Method java/lang/Math.max:(FF)F
+      22: ldc_w         #343                // float 8.0f
+      25: fdiv
+      26: fconst_2
+      27: fmul
+      28: f2i
+      29: invokestatic  #345                // Method dashLine:(Larc/graphics/Color;FFFFI)V
+      32: return
+
+  public static void dashLine(arc.graphics.Color, float, float, float, float, int);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+       6: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       9: aload_0
+      10: getfield      #78                 // Field arc/graphics/Color.a:F
+      13: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      16: fload_1
+      17: fload_2
+      18: fload_3
+      19: fload         4
+      21: iload         5
+      23: invokestatic  #365                // Method arc/graphics/g2d/Lines.dashLine:(FFFFI)V
+      26: fconst_1
+      27: aload_0
+      28: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      31: fload_1
+      32: fload_2
+      33: fload_3
+      34: fload         4
+      36: iload         5
+      38: invokestatic  #365                // Method arc/graphics/g2d/Lines.dashLine:(FFFFI)V
+      41: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      44: return
+
+  public static void line(arc.graphics.Color, float, float, float, float);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+       6: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       9: aload_0
+      10: getfield      #78                 // Field arc/graphics/Color.a:F
+      13: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      16: fload_1
+      17: fload_2
+      18: fload_3
+      19: fload         4
+      21: invokestatic  #231                // Method arc/graphics/g2d/Lines.line:(FFFF)V
+      24: fconst_1
+      25: aload_0
+      26: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      29: fload_1
+      30: fload_2
+      31: fload_3
+      32: fload         4
+      34: invokestatic  #231                // Method arc/graphics/g2d/Lines.line:(FFFF)V
+      37: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      40: return
+
+  public static void dashLineBasic(float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: fload_0
+       5: fload_2
+       6: fsub
+       7: invokestatic  #349                // Method java/lang/Math.abs:(F)F
+      10: fload_1
+      11: fload_3
+      12: fsub
+      13: invokestatic  #349                // Method java/lang/Math.abs:(F)F
+      16: invokestatic  #354                // Method java/lang/Math.max:(FF)F
+      19: ldc_w         #343                // float 8.0f
+      22: fdiv
+      23: fconst_2
+      24: fmul
+      25: f2i
+      26: invokestatic  #365                // Method arc/graphics/g2d/Lines.dashLine:(FFFFI)V
+      29: return
+
+  public static void dashSquare(arc.graphics.Color, float, float, float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_3
+       3: fconst_2
+       4: fdiv
+       5: fsub
+       6: fload_2
+       7: fload_3
+       8: fconst_2
+       9: fdiv
+      10: fsub
+      11: fload_3
+      12: fload_3
+      13: invokestatic  #374                // Method dashRect:(Larc/graphics/Color;FFFF)V
+      16: return
+
+  public static void dashRect(arc.graphics.Color, arc.math.geom.Rect);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getfield      #377                // Field arc/math/geom/Rect.x:F
+       5: aload_1
+       6: getfield      #380                // Field arc/math/geom/Rect.y:F
+       9: aload_1
+      10: getfield      #381                // Field arc/math/geom/Rect.width:F
+      13: aload_1
+      14: getfield      #383                // Field arc/math/geom/Rect.height:F
+      17: invokestatic  #374                // Method dashRect:(Larc/graphics/Color;FFFF)V
+      20: return
+
+  public static void dashRect(arc.graphics.Color, float, float, float, float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fload_2
+       3: fload_1
+       4: fload_3
+       5: fadd
+       6: fload_2
+       7: invokestatic  #384                // Method dashLine:(Larc/graphics/Color;FFFF)V
+      10: aload_0
+      11: fload_1
+      12: fload_3
+      13: fadd
+      14: fload_2
+      15: fload_1
+      16: fload_3
+      17: fadd
+      18: fload_2
+      19: fload         4
+      21: fadd
+      22: invokestatic  #384                // Method dashLine:(Larc/graphics/Color;FFFF)V
+      25: aload_0
+      26: fload_1
+      27: fload_3
+      28: fadd
+      29: fload_2
+      30: fload         4
+      32: fadd
+      33: fload_1
+      34: fload_2
+      35: fload         4
+      37: fadd
+      38: invokestatic  #384                // Method dashLine:(Larc/graphics/Color;FFFF)V
+      41: aload_0
+      42: fload_1
+      43: fload_2
+      44: fload         4
+      46: fadd
+      47: fload_1
+      48: fload_2
+      49: invokestatic  #384                // Method dashLine:(Larc/graphics/Color;FFFF)V
+      52: return
+
+  public static void dashSquareBasic(float, float, float);
+    Code:
+       0: fload_0
+       1: fload_2
+       2: fconst_2
+       3: fdiv
+       4: fsub
+       5: fload_1
+       6: fload_2
+       7: fconst_2
+       8: fdiv
+       9: fsub
+      10: fload_2
+      11: fload_2
+      12: invokestatic  #386                // Method dashRectBasic:(FFFF)V
+      15: return
+
+  public static void dashRectBasic(float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_0
+       3: fload_2
+       4: fadd
+       5: fload_1
+       6: invokestatic  #389                // Method dashLineBasic:(FFFF)V
+       9: fload_0
+      10: fload_2
+      11: fadd
+      12: fload_1
+      13: fload_0
+      14: fload_2
+      15: fadd
+      16: fload_1
+      17: fload_3
+      18: fadd
+      19: invokestatic  #389                // Method dashLineBasic:(FFFF)V
+      22: fload_0
+      23: fload_2
+      24: fadd
+      25: fload_1
+      26: fload_3
+      27: fadd
+      28: fload_0
+      29: fload_1
+      30: fload_3
+      31: fadd
+      32: invokestatic  #389                // Method dashLineBasic:(FFFF)V
+      35: fload_0
+      36: fload_1
+      37: fload_3
+      38: fadd
+      39: fload_0
+      40: fload_1
+      41: invokestatic  #389                // Method dashLineBasic:(FFFF)V
+      44: return
+
+  public static void target(float, float, float, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fconst_1
+       4: aload_3
+       5: invokestatic  #392                // Method target:(FFFFLarc/graphics/Color;)V
+       8: return
+
+  public static void target(float, float, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+       6: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       9: fload_3
+      10: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      13: fload_0
+      14: fload_1
+      15: iconst_4
+      16: fload_2
+      17: getstatic     #396                // Field arc/util/Time.time:F
+      20: ldc_w         #401                // float 1.5f
+      23: fmul
+      24: invokestatic  #402                // Method arc/graphics/g2d/Lines.poly:(FFIFF)V
+      27: fload_0
+      28: fload_1
+      29: ldc_w         #405                // float 0.42857143f
+      32: fload_2
+      33: fmul
+      34: ldc_w         #406                // float 0.85714287f
+      37: fload_2
+      38: fmul
+      39: iconst_4
+      40: getstatic     #396                // Field arc/util/Time.time:F
+      43: ldc_w         #401                // float 1.5f
+      46: fmul
+      47: invokestatic  #407                // Method arc/graphics/g2d/Lines.spikes:(FFFFIF)V
+      50: fconst_1
+      51: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+      54: aload         4
+      56: fload_3
+      57: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      60: fload_0
+      61: fload_1
+      62: iconst_4
+      63: fload_2
+      64: getstatic     #396                // Field arc/util/Time.time:F
+      67: ldc_w         #401                // float 1.5f
+      70: fmul
+      71: invokestatic  #402                // Method arc/graphics/g2d/Lines.poly:(FFIFF)V
+      74: fload_0
+      75: fload_1
+      76: ldc_w         #405                // float 0.42857143f
+      79: fload_2
+      80: fmul
+      81: ldc_w         #406                // float 0.85714287f
+      84: fload_2
+      85: fmul
+      86: iconst_4
+      87: getstatic     #396                // Field arc/util/Time.time:F
+      90: ldc_w         #401                // float 1.5f
+      93: fmul
+      94: invokestatic  #407                // Method arc/graphics/g2d/Lines.spikes:(FFFFIF)V
+      97: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+     100: return
+
+  public static float text();
+    Code:
+       0: invokestatic  #247                // Method arc/graphics/g2d/Draw.z:()F
+       3: fstore_0
+       4: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       7: getfield      #411                // Field mindustry/core/Renderer.pixelate:Z
+      10: ifeq          19
+      13: ldc_w         #414                // float 210.0f
+      16: invokestatic  #253                // Method arc/graphics/g2d/Draw.z:(F)V
+      19: fload_0
+      20: freturn
+
+  public static void light(float, float, float, arc.graphics.Color, float);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: ifnonnull     7
+       6: return
+       7: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+      10: getfield      #415                // Field mindustry/core/Renderer.lights:Lmindustry/graphics/LightRenderer;
+      13: fload_0
+      14: fload_1
+      15: fload_2
+      16: aload_3
+      17: fload         4
+      19: invokevirtual #419                // Method mindustry/graphics/LightRenderer.add:(FFFLarc/graphics/Color;F)V
+      22: return
+
+  public static void light(arc.math.geom.Position, float, arc.graphics.Color, float);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: ifnonnull     7
+       6: return
+       7: aload_0
+       8: invokeinterface #322,  1          // InterfaceMethod arc/math/geom/Position.getX:()F
+      13: aload_0
+      14: invokeinterface #325,  1          // InterfaceMethod arc/math/geom/Position.getY:()F
+      19: fload_1
+      20: aload_2
+      21: fload_3
+      22: invokestatic  #424                // Method light:(FFFLarc/graphics/Color;F)V
+      25: return
+
+  public static void light(float, float, arc.graphics.g2d.TextureRegion, arc.graphics.Color, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: aload_2
+       3: fconst_0
+       4: aload_3
+       5: fload         4
+       7: invokestatic  #427                // Method light:(FFLarc/graphics/g2d/TextureRegion;FLarc/graphics/Color;F)V
+      10: return
+
+  public static void light(float, float, arc.graphics.g2d.TextureRegion, float, arc.graphics.Color, float);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: ifnonnull     7
+       6: return
+       7: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+      10: getfield      #415                // Field mindustry/core/Renderer.lights:Lmindustry/graphics/LightRenderer;
+      13: fload_0
+      14: fload_1
+      15: aload_2
+      16: fload_3
+      17: aload         4
+      19: fload         5
+      21: invokevirtual #430                // Method mindustry/graphics/LightRenderer.add:(FFLarc/graphics/g2d/TextureRegion;FLarc/graphics/Color;F)V
+      24: return
+
+  public static void light(float, float, float, float);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: ifnonnull     7
+       6: return
+       7: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+      10: getfield      #415                // Field mindustry/core/Renderer.lights:Lmindustry/graphics/LightRenderer;
+      13: fload_0
+      14: fload_1
+      15: fload_2
+      16: fload_3
+      17: ldc_w         #432                // float 30.0f
+      20: getstatic     #433                // Field arc/graphics/Color.orange:Larc/graphics/Color;
+      23: ldc_w         #436                // float 0.3f
+      26: invokevirtual #437                // Method mindustry/graphics/LightRenderer.line:(FFFFFLarc/graphics/Color;F)V
+      29: return
+
+  public static void light(float, float, float, float, float, arc.graphics.Color, float);
+    Code:
+       0: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+       3: ifnonnull     7
+       6: return
+       7: getstatic     #113                // Field mindustry/Vars.renderer:Lmindustry/core/Renderer;
+      10: getfield      #415                // Field mindustry/core/Renderer.lights:Lmindustry/graphics/LightRenderer;
+      13: fload_0
+      14: fload_1
+      15: fload_2
+      16: fload_3
+      17: fload         4
+      19: aload         5
+      21: fload         6
+      23: invokevirtual #437                // Method mindustry/graphics/LightRenderer.line:(FFFFFLarc/graphics/Color;F)V
+      26: return
+
+  public static void selected(mindustry.gen.Building, arc.graphics.Color);
+    Code:
+       0: aload_0
+       1: getfield      #440                // Field mindustry/gen/Building.tile:Lmindustry/world/Tile;
+       4: aload_1
+       5: invokestatic  #446                // Method selected:(Lmindustry/world/Tile;Larc/graphics/Color;)V
+       8: return
+
+  public static void selected(mindustry.world.Tile, arc.graphics.Color);
+    Code:
+       0: aload_0
+       1: getfield      #450                // Field mindustry/world/Tile.x:S
+       4: aload_0
+       5: getfield      #455                // Field mindustry/world/Tile.y:S
+       8: aload_0
+       9: invokevirtual #457                // Method mindustry/world/Tile.block:()Lmindustry/world/Block;
+      12: aload_1
+      13: invokestatic  #461                // Method selected:(IILmindustry/world/Block;Larc/graphics/Color;)V
+      16: return
+
+  public static void selected(int, int, mindustry.world.Block, arc.graphics.Color);
+    Code:
+       0: aload_3
+       1: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+       4: iconst_0
+       5: istore        4
+       7: iload         4
+       9: iconst_4
+      10: if_icmpge     99
+      13: getstatic     #466                // Field arc/math/geom/Geometry.d8edge:[Larc/math/geom/Point2;
+      16: iload         4
+      18: aaload
+      19: astore        5
+      21: aload_2
+      22: getfield      #470                // Field mindustry/world/Block.size:I
+      25: iconst_1
+      26: isub
+      27: iconst_0
+      28: invokestatic  #475                // Method java/lang/Math.max:(II)I
+      31: ineg
+      32: i2f
+      33: fconst_2
+      34: fdiv
+      35: ldc_w         #343                // float 8.0f
+      38: fmul
+      39: fstore        6
+      41: ldc_w         #477                // String block-select
+      44: iload_0
+      45: bipush        8
+      47: imul
+      48: i2f
+      49: aload_2
+      50: getfield      #479                // Field mindustry/world/Block.offset:F
+      53: fadd
+      54: fload         6
+      56: aload         5
+      58: getfield      #482                // Field arc/math/geom/Point2.x:I
+      61: i2f
+      62: fmul
+      63: fadd
+      64: iload_1
+      65: bipush        8
+      67: imul
+      68: i2f
+      69: aload_2
+      70: getfield      #479                // Field mindustry/world/Block.offset:F
+      73: fadd
+      74: fload         6
+      76: aload         5
+      78: getfield      #486                // Field arc/math/geom/Point2.y:I
+      81: i2f
+      82: fmul
+      83: fadd
+      84: iload         4
+      86: bipush        90
+      88: imul
+      89: i2f
+      90: invokestatic  #488                // Method arc/graphics/g2d/Draw.rect:(Ljava/lang/String;FFF)V
+      93: iinc          4, 1
+      96: goto          7
+      99: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+     102: return
+
+  public static void shadow(float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fconst_1
+       4: invokestatic  #491                // Method shadow:(FFFF)V
+       7: return
+
+  public static void squareShadow(float, float, float, float);
+    Code:
+       0: fconst_0
+       1: fconst_0
+       2: fconst_0
+       3: ldc_w         #494                // float 0.4f
+       6: fload_3
+       7: fmul
+       8: invokestatic  #495                // Method arc/graphics/g2d/Draw.color:(FFFF)V
+      11: ldc_w         #497                // String square-shadow
+      14: fload_0
+      15: fload_1
+      16: fload_2
+      17: getstatic     #287                // Field arc/graphics/g2d/Draw.xscl:F
+      20: fmul
+      21: fload_2
+      22: getstatic     #292                // Field arc/graphics/g2d/Draw.yscl:F
+      25: fmul
+      26: invokestatic  #499                // Method arc/graphics/g2d/Draw.rect:(Ljava/lang/String;FFFF)V
+      29: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      32: return
+
+  public static void shadow(float, float, float, float);
+    Code:
+       0: fconst_0
+       1: fconst_0
+       2: fconst_0
+       3: ldc_w         #494                // float 0.4f
+       6: fload_3
+       7: fmul
+       8: invokestatic  #495                // Method arc/graphics/g2d/Draw.color:(FFFF)V
+      11: ldc_w         #502                // String circle-shadow
+      14: fload_0
+      15: fload_1
+      16: fload_2
+      17: getstatic     #287                // Field arc/graphics/g2d/Draw.xscl:F
+      20: fmul
+      21: fload_2
+      22: getstatic     #292                // Field arc/graphics/g2d/Draw.yscl:F
+      25: fmul
+      26: invokestatic  #499                // Method arc/graphics/g2d/Draw.rect:(Ljava/lang/String;FFFF)V
+      29: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      32: return
+
+  public static void shadow(arc.graphics.g2d.TextureRegion, float, float, float);
+    Code:
+       0: getstatic     #504                // Field mindustry/graphics/Pal.shadow:Larc/graphics/Color;
+       3: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+       6: aload_0
+       7: fload_1
+       8: fload_2
+       9: fload_3
+      10: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      13: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      16: return
+
+  public static void shadow(arc.graphics.g2d.TextureRegion, float, float);
+    Code:
+       0: getstatic     #504                // Field mindustry/graphics/Pal.shadow:Larc/graphics/Color;
+       3: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+       6: aload_0
+       7: fload_1
+       8: fload_2
+       9: invokestatic  #506                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FF)V
+      12: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      15: return
+
+  public static void shadow(arc.graphics.g2d.TextureRegion, float, float, float, float, float);
+    Code:
+       0: getstatic     #504                // Field mindustry/graphics/Pal.shadow:Larc/graphics/Color;
+       3: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+       6: aload_0
+       7: fload_1
+       8: fload_2
+       9: fload_3
+      10: fload         4
+      12: fload         5
+      14: invokestatic  #268                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFFFF)V
+      17: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      20: return
+
+  public static void liquid(arc.graphics.g2d.TextureRegion, float, float, float, arc.graphics.Color, float);
+    Code:
+       0: fload_3
+       1: ldc_w         #509                // float 0.003921569f
+       4: fcmpg
+       5: ifge          9
+       8: return
+       9: aload         4
+      11: fload_3
+      12: aload         4
+      14: getfield      #78                 // Field arc/graphics/Color.a:F
+      17: fmul
+      18: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      21: aload_0
+      22: fload_1
+      23: fload_2
+      24: fload         5
+      26: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      29: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      32: return
+
+  public static void liquid(arc.graphics.g2d.TextureRegion, float, float, float, arc.graphics.Color);
+    Code:
+       0: fload_3
+       1: ldc_w         #509                // float 0.003921569f
+       4: fcmpg
+       5: ifge          9
+       8: return
+       9: aload         4
+      11: fload_3
+      12: aload         4
+      14: getfield      #78                 // Field arc/graphics/Color.a:F
+      17: fmul
+      18: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      21: aload_0
+      22: fload_1
+      23: fload_2
+      24: invokestatic  #506                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FF)V
+      27: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      30: return
+
+  public static void dashCircle(float, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       6: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+       9: fload_0
+      10: fload_1
+      11: fload_2
+      12: invokestatic  #510                // Method arc/graphics/g2d/Lines.dashCircle:(FFF)V
+      15: fconst_1
+      16: aload_3
+      17: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      20: fload_0
+      21: fload_1
+      22: fload_2
+      23: invokestatic  #510                // Method arc/graphics/g2d/Lines.dashCircle:(FFF)V
+      26: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      29: return
+
+  public static void circles(float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+       6: invokestatic  #513                // Method circles:(FFFLarc/graphics/Color;)V
+       9: return
+
+  public static void circles(float, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       6: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+       9: fload_0
+      10: fload_1
+      11: fload_2
+      12: invokestatic  #517                // Method arc/graphics/g2d/Lines.circle:(FFF)V
+      15: fconst_1
+      16: aload_3
+      17: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      20: fload_0
+      21: fload_1
+      22: fload_2
+      23: invokestatic  #517                // Method arc/graphics/g2d/Lines.circle:(FFF)V
+      26: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      29: return
+
+  public static void select(float, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       6: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+       9: fload_0
+      10: fload_1
+      11: fload_2
+      12: fconst_1
+      13: fadd
+      14: invokestatic  #520                // Method arc/graphics/g2d/Lines.square:(FFF)V
+      17: fconst_1
+      18: aload_3
+      19: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      22: fload_0
+      23: fload_1
+      24: fload_2
+      25: invokestatic  #520                // Method arc/graphics/g2d/Lines.square:(FFF)V
+      28: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      31: return
+
+  public static void square(float, float, float, float, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: aload         4
+       6: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       9: getstatic     #523                // Field arc/util/Tmp.c3:Larc/graphics/Color;
+      12: invokevirtual #526                // Method arc/graphics/Color.write:(Larc/graphics/Color;)Larc/graphics/Color;
+      15: aload         4
+      17: getfield      #78                 // Field arc/graphics/Color.a:F
+      20: invokevirtual #530                // Method arc/graphics/Color.a:(F)Larc/graphics/Color;
+      23: invokestatic  #533                // Method square:(FFFFLarc/graphics/Color;Larc/graphics/Color;)V
+      26: return
+
+  public static void square(float, float, float, float, arc.graphics.Color, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: aload         4
+       6: aload         5
+       8: fconst_1
+       9: invokestatic  #536                // Method square:(FFFFLarc/graphics/Color;Larc/graphics/Color;F)V
+      12: return
+
+  public static void square(float, float, float, float, arc.graphics.Color, arc.graphics.Color, float);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: fload         6
+       5: fmul
+       6: aload         5
+       8: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      11: fload_0
+      12: fload_1
+      13: fload_2
+      14: fconst_1
+      15: fload         6
+      17: fmul
+      18: fadd
+      19: fload_3
+      20: invokestatic  #539                // Method arc/graphics/g2d/Lines.square:(FFFF)V
+      23: fconst_1
+      24: fload         6
+      26: fmul
+      27: aload         4
+      29: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      32: fload_0
+      33: fload_1
+      34: fload_2
+      35: fconst_1
+      36: fload         6
+      38: fmul
+      39: fadd
+      40: fload_3
+      41: invokestatic  #539                // Method arc/graphics/g2d/Lines.square:(FFFF)V
+      44: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      47: return
+
+  public static void cross(float, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       6: getstatic     #523                // Field arc/util/Tmp.c3:Larc/graphics/Color;
+       9: invokevirtual #526                // Method arc/graphics/Color.write:(Larc/graphics/Color;)Larc/graphics/Color;
+      12: aload_3
+      13: getfield      #78                 // Field arc/graphics/Color.a:F
+      16: invokevirtual #530                // Method arc/graphics/Color.a:(F)Larc/graphics/Color;
+      19: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      22: fload_0
+      23: fload_1
+      24: ldc_w         #541                // float 45.0f
+      27: fload_2
+      28: fconst_1
+      29: fadd
+      30: invokestatic  #542                // Method arc/graphics/g2d/Lines.lineAngleCenter:(FFFF)V
+      33: fload_0
+      34: fload_1
+      35: ldc_w         #545                // float 135.0f
+      38: fload_2
+      39: fconst_1
+      40: fadd
+      41: invokestatic  #542                // Method arc/graphics/g2d/Lines.lineAngleCenter:(FFFF)V
+      44: fconst_1
+      45: aload_3
+      46: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      49: fload_0
+      50: fload_1
+      51: ldc_w         #541                // float 45.0f
+      54: fload_2
+      55: fconst_1
+      56: fadd
+      57: invokestatic  #542                // Method arc/graphics/g2d/Lines.lineAngleCenter:(FFFF)V
+      60: fload_0
+      61: fload_1
+      62: ldc_w         #545                // float 135.0f
+      65: fload_2
+      66: fconst_1
+      67: fadd
+      68: invokestatic  #542                // Method arc/graphics/g2d/Lines.lineAngleCenter:(FFFF)V
+      71: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      74: return
+
+  public static void poly(float, float, int, float, float, arc.graphics.Color);
+    Code:
+       0: ldc_w         #358                // float 3.0f
+       3: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+       6: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+       9: fload_0
+      10: fload_1
+      11: iload_2
+      12: fload_3
+      13: fconst_1
+      14: fadd
+      15: fload         4
+      17: invokestatic  #402                // Method arc/graphics/g2d/Lines.poly:(FFIFF)V
+      20: fconst_1
+      21: aload         5
+      23: invokestatic  #368                // Method arc/graphics/g2d/Lines.stroke:(FLarc/graphics/Color;)V
+      26: fload_0
+      27: fload_1
+      28: iload_2
+      29: fload_3
+      30: fconst_1
+      31: fadd
+      32: fload         4
+      34: invokestatic  #402                // Method arc/graphics/g2d/Lines.poly:(FFIFF)V
+      37: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      40: return
+
+  public static void fillPoly(float, float, int, float, float, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: iload_2
+       3: fload_3
+       4: fload         4
+       6: aload         5
+       8: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+      11: fconst_1
+      12: invokestatic  #546                // Method fillPoly:(FFIFFLarc/graphics/Color;Larc/graphics/Color;F)V
+      15: return
+
+  public static void fillPoly(float, float, int, float, float, arc.graphics.Color, arc.graphics.Color, float);
+    Code:
+       0: aload         6
+       2: aload         5
+       4: getfield      #78                 // Field arc/graphics/Color.a:F
+       7: invokestatic  #255                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;F)V
+      10: fload_0
+      11: fload_1
+      12: iload_2
+      13: fload_3
+      14: fconst_2
+      15: fload         7
+      17: fmul
+      18: fadd
+      19: fload         4
+      21: invokestatic  #550                // Method arc/graphics/g2d/Fill.poly:(FFIFF)V
+      24: aload         5
+      26: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+      29: fload_0
+      30: fload_1
+      31: iload_2
+      32: fload_3
+      33: fload         4
+      35: invokestatic  #550                // Method arc/graphics/g2d/Fill.poly:(FFIFF)V
+      38: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      41: return
+
+  public static void square(float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+       7: invokestatic  #551                // Method square:(FFFFLarc/graphics/Color;)V
+      10: return
+
+  public static void square(float, float, float, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: ldc_w         #541                // float 45.0f
+       6: aload_3
+       7: invokestatic  #551                // Method square:(FFFFLarc/graphics/Color;)V
+      10: return
+
+  public static void square(float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: ldc_w         #541                // float 45.0f
+       6: invokestatic  #553                // Method square:(FFFF)V
+       9: return
+
+  public static void arrow(float, float, float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: fload         4
+       6: fload         5
+       8: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+      11: invokestatic  #554                // Method arrow:(FFFFFFLarc/graphics/Color;)V
+      14: return
+
+  public static void arrow(float, float, float, float, float, float, arc.graphics.Color);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: fload_2
+       3: fload_3
+       4: invokestatic  #191                // Method arc/math/Angles.angle:(FFFF)F
+       7: fstore        7
+       9: fconst_2
+      10: fstore        8
+      12: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      15: fload_2
+      16: fload_3
+      17: invokevirtual #179                // Method arc/math/geom/Vec2.set:(FF)Larc/math/geom/Vec2;
+      20: fload_0
+      21: fload_1
+      22: invokevirtual #558                // Method arc/math/geom/Vec2.sub:(FF)Larc/math/geom/Vec2;
+      25: fload         4
+      27: invokevirtual #560                // Method arc/math/geom/Vec2.limit:(F)Larc/math/geom/Vec2;
+      30: pop
+      31: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      34: getfield      #156                // Field arc/math/geom/Vec2.x:F
+      37: fload_0
+      38: fadd
+      39: fstore        9
+      41: getstatic     #144                // Field arc/util/Tmp.v1:Larc/math/geom/Vec2;
+      44: getfield      #159                // Field arc/math/geom/Vec2.y:F
+      47: fload_1
+      48: fadd
+      49: fstore        10
+      51: getstatic     #362                // Field mindustry/graphics/Pal.gray:Larc/graphics/Color;
+      54: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+      57: fload         9
+      59: fload         10
+      61: iconst_3
+      62: fload         5
+      64: fload         8
+      66: fadd
+      67: fload         7
+      69: invokestatic  #550                // Method arc/graphics/g2d/Fill.poly:(FFIFF)V
+      72: aload         6
+      74: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+      77: fload         9
+      79: fload         10
+      81: iconst_3
+      82: fload         5
+      84: fload         7
+      86: invokestatic  #550                // Method arc/graphics/g2d/Fill.poly:(FFIFF)V
+      89: invokestatic  #274                // Method arc/graphics/g2d/Draw.color:()V
+      92: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_1
+       3: fload_2
+       4: fload_3
+       5: fload         4
+       7: fload         5
+       9: fconst_1
+      10: invokestatic  #563                // Method laser:(Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;FFFFF)V
+      13: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: fload_3
+       4: fload         4
+       6: fload         5
+       8: fload         6
+      10: fconst_1
+      11: invokestatic  #563                // Method laser:(Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;FFFFF)V
+      14: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_1
+       3: fload_2
+       4: fload_3
+       5: fload         4
+       7: fload         5
+       9: fload         6
+      11: invokestatic  #563                // Method laser:(Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;FFFFF)V
+      14: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: fload_3
+       4: fload         4
+       6: fload         5
+       8: fload         6
+      10: fload         7
+      12: iconst_1
+      13: invokestatic  #567                // Method laser:(Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;FFFFFZ)V
+      16: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float, float, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: fload_3
+       4: fload         4
+       6: fload         5
+       8: fload         6
+      10: fload         7
+      12: iload         8
+      14: iconst_1
+      15: invokestatic  #570                // Method laser:(Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;Larc/graphics/g2d/TextureRegion;FFFFFZZ)V
+      18: return
+
+  public static void laser(arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, arc.graphics.g2d.TextureRegion, float, float, float, float, float, boolean, boolean);
+    Code:
+       0: ldc_w         #343                // float 8.0f
+       3: fload         7
+       5: fmul
+       6: getstatic     #573                // Field arc/graphics/g2d/Draw.scl:F
+       9: fmul
+      10: fstore        10
+      12: fload         5
+      14: fload_3
+      15: fsub
+      16: fload         6
+      18: fload         4
+      20: fsub
+      21: invokestatic  #575                // Method arc/math/Mathf.angle:(FF)F
+      24: fstore        11
+      26: fload         11
+      28: invokestatic  #577                // Method arc/math/Mathf.cosDeg:(F)F
+      31: fload         10
+      33: fmul
+      34: fstore        12
+      36: fload         11
+      38: invokestatic  #580                // Method arc/math/Mathf.sinDeg:(F)F
+      41: fload         10
+      43: fmul
+      44: fstore        13
+      46: iload         9
+      48: ifeq          83
+      51: aload_1
+      52: getfield      #279                // Field arc/graphics/g2d/TextureRegion.width:I
+      55: i2f
+      56: fload         7
+      58: fmul
+      59: aload_1
+      60: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+      63: fmul
+      64: ldc_w         #583                // float 10.0f
+      67: fcmpg
+      68: ifge          77
+      71: getstatic     #584                // Field mindustry/graphics/Lod.alpha1:F
+      74: goto          84
+      77: getstatic     #589                // Field mindustry/graphics/Lod.alpha2:F
+      80: goto          84
+      83: fconst_1
+      84: fstore        14
+      86: invokestatic  #592                // Method arc/graphics/g2d/Draw.getColorAlpha:()F
+      89: fstore        15
+      91: fload         15
+      93: ldc_w         #509                // float 0.003921569f
+      96: fcmpl
+      97: iflt          233
+     100: fload         14
+     102: ldc_w         #595                // float 1.0E-4f
+     105: fcmpl
+     106: ifle          196
+     109: fload         14
+     111: fload         15
+     113: fmul
+     114: invokestatic  #596                // Method arc/graphics/g2d/Draw.alpha:(F)V
+     117: aload_1
+     118: fload_3
+     119: fload         4
+     121: aload_1
+     122: getfield      #279                // Field arc/graphics/g2d/TextureRegion.width:I
+     125: i2f
+     126: fload         7
+     128: fmul
+     129: aload_1
+     130: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+     133: fmul
+     134: aload_1
+     135: getfield      #290                // Field arc/graphics/g2d/TextureRegion.height:I
+     138: i2f
+     139: fload         7
+     141: fmul
+     142: aload_1
+     143: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+     146: fmul
+     147: fload         11
+     149: ldc           #143                // float 180.0f
+     151: fadd
+     152: invokestatic  #268                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFFFF)V
+     155: aload_2
+     156: fload         5
+     158: fload         6
+     160: aload_2
+     161: getfield      #279                // Field arc/graphics/g2d/TextureRegion.width:I
+     164: i2f
+     165: fload         7
+     167: fmul
+     168: aload_2
+     169: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+     172: fmul
+     173: aload_2
+     174: getfield      #290                // Field arc/graphics/g2d/TextureRegion.height:I
+     177: i2f
+     178: fload         7
+     180: fmul
+     181: aload_2
+     182: invokevirtual #285                // Method arc/graphics/g2d/TextureRegion.scl:()F
+     185: fmul
+     186: fload         11
+     188: invokestatic  #268                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFFFF)V
+     191: fload         15
+     193: invokestatic  #596                // Method arc/graphics/g2d/Draw.alpha:(F)V
+     196: ldc_w         #599                // float 12.0f
+     199: fload         7
+     201: fmul
+     202: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+     205: aload_0
+     206: fload_3
+     207: fload         12
+     209: fadd
+     210: fload         4
+     212: fload         13
+     214: fadd
+     215: fload         5
+     217: fload         12
+     219: fsub
+     220: fload         6
+     222: fload         13
+     224: fsub
+     225: iconst_0
+     226: invokestatic  #600                // Method arc/graphics/g2d/Lines.line:(Larc/graphics/g2d/TextureRegion;FFFFZ)V
+     229: fconst_1
+     230: invokestatic  #359                // Method arc/graphics/g2d/Lines.stroke:(F)V
+     233: iload         8
+     235: ifeq          248
+     238: fload_3
+     239: fload         4
+     241: fload         5
+     243: fload         6
+     245: invokestatic  #603                // Method light:(FFFF)V
+     248: return
+
+  public static void tri(float, float, float, float, float);
+    Code:
+       0: fload         4
+       2: fload_3
+       3: invokestatic  #605                // Method arc/math/Angles.trnsx:(FF)F
+       6: fstore        5
+       8: fload         4
+      10: fload_3
+      11: invokestatic  #608                // Method arc/math/Angles.trnsy:(FF)F
+      14: fstore        6
+      16: fload         4
+      18: ldc           #142                // float 90.0f
+      20: fsub
+      21: fload_2
+      22: fconst_2
+      23: fdiv
+      24: invokestatic  #605                // Method arc/math/Angles.trnsx:(FF)F
+      27: fstore        7
+      29: fload         4
+      31: ldc           #142                // float 90.0f
+      33: fsub
+      34: fload_2
+      35: fconst_2
+      36: fdiv
+      37: invokestatic  #608                // Method arc/math/Angles.trnsy:(FF)F
+      40: fstore        8
+      42: fload_0
+      43: fload         7
+      45: fadd
+      46: fload_1
+      47: fload         8
+      49: fadd
+      50: fload_0
+      51: fload         5
+      53: fadd
+      54: fload_1
+      55: fload         6
+      57: fadd
+      58: fload_0
+      59: fload         7
+      61: fsub
+      62: fload_1
+      63: fload         8
+      65: fsub
+      66: invokestatic  #227                // Method arc/graphics/g2d/Fill.tri:(FFFFFF)V
+      69: return
+
+  public static void construct(mindustry.gen.Building, mindustry.ctype.UnlockableContent, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getfield      #611                // Field mindustry/ctype/UnlockableContent.fullIcon:Larc/graphics/g2d/TextureRegion;
+       5: fload_2
+       6: fload_3
+       7: fload         4
+       9: fload         5
+      11: invokestatic  #617                // Method construct:(Lmindustry/gen/Building;Larc/graphics/g2d/TextureRegion;FFFF)V
+      14: return
+
+  public static void construct(float, float, arc.graphics.g2d.TextureRegion, float, float, float, float);
+    Code:
+       0: fload_0
+       1: fload_1
+       2: aload_2
+       3: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+       6: fload_3
+       7: fload         4
+       9: fload         5
+      11: fload         6
+      13: invokestatic  #621                // Method construct:(FFLarc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFF)V
+      16: return
+
+  public static void construct(float, float, arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float);
+    Code:
+       0: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+       3: aload_2
+       4: putfield      #630                // Field mindustry/graphics/Shaders$UnitBuildShader.region:Larc/graphics/g2d/TextureRegion;
+       7: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      10: fload         5
+      12: putfield      #635                // Field mindustry/graphics/Shaders$UnitBuildShader.progress:F
+      15: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      18: getfield      #638                // Field mindustry/graphics/Shaders$UnitBuildShader.color:Larc/graphics/Color;
+      21: aload_3
+      22: invokevirtual #640                // Method arc/graphics/Color.set:(Larc/graphics/Color;)Larc/graphics/Color;
+      25: pop
+      26: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      29: getfield      #638                // Field mindustry/graphics/Shaders$UnitBuildShader.color:Larc/graphics/Color;
+      32: fload         6
+      34: putfield      #78                 // Field arc/graphics/Color.a:F
+      37: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      40: fload         7
+      42: fneg
+      43: ldc_w         #642                // float 20.0f
+      46: fdiv
+      47: putfield      #643                // Field mindustry/graphics/Shaders$UnitBuildShader.time:F
+      50: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      53: invokestatic  #644                // Method arc/graphics/g2d/Draw.shader:(Larc/graphics/gl/Shader;)V
+      56: aload_2
+      57: fload_0
+      58: fload_1
+      59: fload         4
+      61: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      64: invokestatic  #648                // Method arc/graphics/g2d/Draw.shader:()V
+      67: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+      70: return
+
+  public static void construct(mindustry.gen.Building, arc.graphics.g2d.TextureRegion, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+       5: fload_2
+       6: fload_3
+       7: fload         4
+       9: fload         5
+      11: invokestatic  #650                // Method construct:(Lmindustry/gen/Building;Larc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFF)V
+      14: return
+
+  public static void construct(mindustry.gen.Building, arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: fload_3
+       4: fload         4
+       6: fload         5
+       8: fload         6
+      10: aload_0
+      11: getfield      #653                // Field mindustry/gen/Building.block:Lmindustry/world/Block;
+      14: getfield      #470                // Field mindustry/world/Block.size:I
+      17: bipush        8
+      19: imul
+      20: i2f
+      21: ldc_w         #656                // float 4.0f
+      24: fsub
+      25: invokestatic  #657                // Method construct:(Lmindustry/gen/Building;Larc/graphics/g2d/TextureRegion;Larc/graphics/Color;FFFFF)V
+      28: return
+
+  public static void construct(mindustry.gen.Building, arc.graphics.g2d.TextureRegion, arc.graphics.Color, float, float, float, float, float);
+    Code:
+       0: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+       3: aload_1
+       4: putfield      #630                // Field mindustry/graphics/Shaders$UnitBuildShader.region:Larc/graphics/g2d/TextureRegion;
+       7: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      10: fload         4
+      12: putfield      #635                // Field mindustry/graphics/Shaders$UnitBuildShader.progress:F
+      15: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      18: getfield      #638                // Field mindustry/graphics/Shaders$UnitBuildShader.color:Larc/graphics/Color;
+      21: aload_2
+      22: invokevirtual #640                // Method arc/graphics/Color.set:(Larc/graphics/Color;)Larc/graphics/Color;
+      25: pop
+      26: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      29: getfield      #638                // Field mindustry/graphics/Shaders$UnitBuildShader.color:Larc/graphics/Color;
+      32: fload         5
+      34: putfield      #78                 // Field arc/graphics/Color.a:F
+      37: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      40: fload         6
+      42: fneg
+      43: ldc_w         #642                // float 20.0f
+      46: fdiv
+      47: putfield      #643                // Field mindustry/graphics/Shaders$UnitBuildShader.time:F
+      50: getstatic     #624                // Field mindustry/graphics/Shaders.build:Lmindustry/graphics/Shaders$UnitBuildShader;
+      53: invokestatic  #644                // Method arc/graphics/g2d/Draw.shader:(Larc/graphics/gl/Shader;)V
+      56: aload_1
+      57: aload_0
+      58: getfield      #660                // Field mindustry/gen/Building.x:F
+      61: aload_0
+      62: getfield      #661                // Field mindustry/gen/Building.y:F
+      65: fload_3
+      66: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      69: invokestatic  #648                // Method arc/graphics/g2d/Draw.shader:()V
+      72: getstatic     #331                // Field mindustry/graphics/Pal.accent:Larc/graphics/Color;
+      75: invokestatic  #464                // Method arc/graphics/g2d/Draw.color:(Larc/graphics/Color;)V
+      78: fload         5
+      80: invokestatic  #596                // Method arc/graphics/g2d/Draw.alpha:(F)V
+      83: aload_0
+      84: getfield      #660                // Field mindustry/gen/Building.x:F
+      87: fload         6
+      89: ldc_w         #642                // float 20.0f
+      92: fload         7
+      94: fconst_2
+      95: fdiv
+      96: invokestatic  #662                // Method arc/math/Mathf.sin:(FFF)F
+      99: fadd
+     100: aload_0
+     101: getfield      #661                // Field mindustry/gen/Building.y:F
+     104: ldc           #142                // float 90.0f
+     106: fload         7
+     108: invokestatic  #542                // Method arc/graphics/g2d/Lines.lineAngleCenter:(FFFF)V
+     111: invokestatic  #371                // Method arc/graphics/g2d/Draw.reset:()V
+     114: return
+
+  public static void spinSprite(arc.graphics.g2d.TextureRegion, float, float, float);
+    Code:
+       0: invokestatic  #592                // Method arc/graphics/g2d/Draw.getColorAlpha:()F
+       3: fstore        4
+       5: fload_3
+       6: ldc           #142                // float 90.0f
+       8: invokestatic  #666                // Method arc/math/Mathf.mod:(FF)F
+      11: fstore_3
+      12: aload_0
+      13: fload_1
+      14: fload_2
+      15: fload_3
+      16: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      19: fload_3
+      20: ldc           #142                // float 90.0f
+      22: fdiv
+      23: fload         4
+      25: fmul
+      26: invokestatic  #596                // Method arc/graphics/g2d/Draw.alpha:(F)V
+      29: aload_0
+      30: fload_1
+      31: fload_2
+      32: fload_3
+      33: ldc           #142                // float 90.0f
+      35: fsub
+      36: invokestatic  #276                // Method arc/graphics/g2d/Draw.rect:(Larc/graphics/g2d/TextureRegion;FFF)V
+      39: fload         4
+      41: invokestatic  #596                // Method arc/graphics/g2d/Draw.alpha:(F)V
+      44: return
+
+  static {};
+    Code:
+       0: iconst_4
+       1: anewarray     #151                // class arc/math/geom/Vec2
+       4: dup
+       5: iconst_0
+       6: new           #151                // class arc/math/geom/Vec2
+       9: dup
+      10: invokespecial #672                // Method arc/math/geom/Vec2."<init>":()V
+      13: aastore
+      14: dup
+      15: iconst_1
+      16: new           #151                // class arc/math/geom/Vec2
+      19: dup
+      20: invokespecial #672                // Method arc/math/geom/Vec2."<init>":()V
+      23: aastore
+      24: dup
+      25: iconst_2
+      26: new           #151                // class arc/math/geom/Vec2
+      29: dup
+      30: invokespecial #672                // Method arc/math/geom/Vec2."<init>":()V
+      33: aastore
+      34: dup
+      35: iconst_3
+      36: new           #151                // class arc/math/geom/Vec2
+      39: dup
+      40: invokespecial #672                // Method arc/math/geom/Vec2."<init>":()V
+      43: aastore
+      44: putstatic     #197                // Field vecs:[Larc/math/geom/Vec2;
+      47: new           #140                // class arc/struct/FloatSeq
+      50: dup
+      51: invokespecial #673                // Method arc/struct/FloatSeq."<init>":()V
+      54: putstatic     #135                // Field points:Larc/struct/FloatSeq;
+      57: return
+}
