@@ -7,6 +7,7 @@ import mindustry.entities.Effect;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.CacheLayer;
 import mindustry.type.ItemStack;
+import mindustry.type.LiquidStack;
 
 import static mindustry.Vars.tilesize;
 import static udmodpack.UdBasicFloor.*;
@@ -350,10 +351,152 @@ public class UDContent {
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
         );
 
+        // === 装药合成厂（6配方，2x3 UI） ===
+        new UdGunpowderFactory("ud-gunpowder-factory");
+
+        new UdDepthDrivenFactory(
+            "ud-fac-Ionization",
+            2,
+            1.0f, 0f, 0.05f,
+            1f,
+            1f,
+            0, null,
+            50f, null,
+            null,
+            new LiquidStack[]{ new LiquidStack(freshWater, 12f) },
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-sorter",
+            2,
+            1.0f, -0.1f, 0.05f,
+            2.5f,
+            0f,
+            10, new ItemStack[]{ new ItemStack(tuberculosis, 2) },
+            0f, null,
+            new ItemStack[]{ new ItemStack(manganese, 2) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-etching",
+            2,
+            1.0f, -0.1f, 0.65f,
+            1.5f,
+            1f,
+            10, new ItemStack[]{ new ItemStack(iron, 1), new ItemStack(manganese, 2) },
+            0f, null,
+            new ItemStack[]{ new ItemStack(chip, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-compressor",
+            2,
+            0.6f, 0.05f, 0.05f,
+            2.4f,
+            1f,
+            10, new ItemStack[]{ new ItemStack(iron, 2), new ItemStack(manganese, 2) },
+            20f, new LiquidStack[]{ new LiquidStack(freshWater, 6f) },
+            new ItemStack[]{ new ItemStack(manganeseSteel, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-fermentation-tank",
+            2,
+            0.6f, 0.05f, 0.05f,
+            2f,
+            1f,
+            20, new ItemStack[]{ new ItemStack(seaweedBundle, 6) },
+            30f, null,
+            null,
+            new LiquidStack[]{ new LiquidStack(seaweedOil, 18f) },
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-glass-kiln",
+            2,
+            0.35f, 0.08f, 0.05f,
+            2f,
+            1f,
+            20, new ItemStack[]{ new ItemStack(silicaSand, 1) },
+            0f, null,
+            new ItemStack[]{ new ItemStack(pressedGlass, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-advanced-etching",
+            3,
+            1.0f, -0.05f, 0.5f,
+            3.6f,
+            1f,
+            20, new ItemStack[]{ new ItemStack(aurum, 1), new ItemStack(manganese, 3), new ItemStack(silicaSand, 6) },
+            0f, null,
+            new ItemStack[]{ new ItemStack(advancedChip, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+        new UdDepthDrivenFactory(
+            "ud-fac-charger",
+            3,
+            1.0f, -0.05f, 0.05f,
+            2f,
+            1f,
+            20, new ItemStack[]{ new ItemStack(manganeseSteel, 4), new ItemStack(aurum, 2) },
+            30f, new LiquidStack[]{ new LiquidStack(rootGel, 12f) },
+            new ItemStack[]{ new ItemStack(shieldAlloy, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+
+        // === 培养机 ===
+        new UdRootFactory("ud-fac-incubator");
+
+        // === 生物反应器 ===
+        new UdBioreactorFactory("ud-fac-bioreactor");
+
+        // === 原子卤化釜 ===
+        new UdHalogenatorFactory("ud-fac-halogenator");
+
+        new UdDepthDrivenFactory(
+            "ud-fac-rlyeh-foundry",
+            4,
+            0.2f, 0.025f, 0.9f,
+            5.2f,
+            1f,
+            30, new ItemStack[]{ new ItemStack(nickel, 5), new ItemStack(advancedChip, 3) },
+            30f, new LiquidStack[]{ new LiquidStack(atomicHalogen, 8f) },
+            new ItemStack[]{ new ItemStack(rlyehAlloy, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
+
         // === 精准核心合成厂（多配方工厂） ===
         new UdPrecCoreFactory("ud-prec-core-factory");
 
-        // === 深度测试工厂（调试用） ===
-        new UdDepthTestBlock("ud-depth-test-block", 1f, 0.2f, 0f);
+        new UdDepthDrivenFactory(
+            "ud-advanced-core-factory",
+            4,
+            0.2f, 0.025f, 0.9f,
+            10f,
+            1f,
+            100, new ItemStack[]{ new ItemStack(precCoreFight, 50), new ItemStack(precCoreExist, 50), new ItemStack(precCoreMigrate, 50) },
+            50f, new LiquidStack[]{ new LiquidStack(rootGel, 15f), new LiquidStack(atomicHalogen, 28f) },
+            new ItemStack[]{ new ItemStack(precCoreFinal, 1) },
+            null,
+            new ItemStack[]{ new ItemStack(Items.copper, 10) },
+            90f
+        );
     }
 }
