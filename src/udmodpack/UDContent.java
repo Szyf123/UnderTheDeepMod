@@ -95,6 +95,8 @@ public class UDContent {
     public static UdBasicOre franciumOre;
 
     public static UdCustomDrill hydraulicDrill;
+    public static UdCustomDrill electricalDrill;
+    public static UdCustomDrill preciseDrill;
 
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
@@ -320,9 +322,30 @@ public class UDContent {
         // === 自定义钻头 ===
         hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
             Liquids.water, 1.6f,
-            iron, 200f,
-            tuberculosis, 200f,
-            silicaSand, 115f,
+            iron, 800f,
+            tuberculosis, 800f,
+            silicaSand, 460f,
+            new mindustry.type.ItemStack(mindustry.content.Items.copper, 30),
+            new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
+        );
+        electricalDrill = new UdCustomDrill("ud-dri-electrical", 3, 3, 60f, 90f, 1.2f, 0.12f,
+            Liquids.water, 2.4f,
+            aurum, 760f,
+            nickel, 660f,
+            iron, 450f,
+            tuberculosis, 450f,
+            silicaSand, 280f,
+            new mindustry.type.ItemStack(mindustry.content.Items.copper, 30),
+            new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
+        );
+        preciseDrill = new UdCustomDrill("ud-dri-precise", 4, 4, 60f, 90f, 2f, 0.2f,
+            Liquids.water, 4.2f,
+            francium, 680f,
+            aurum, 420f,
+            nickel, 380f,
+            iron, 240f,
+            tuberculosis, 240f,
+            silicaSand, 180f,
             new mindustry.type.ItemStack(mindustry.content.Items.copper, 30),
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
         );
