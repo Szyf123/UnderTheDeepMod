@@ -28,7 +28,7 @@ public class UdBioreactorFactory extends Block {
     static final int   SIZE = 2;
 
     static final int   ROOT_INPUT = 3;           // 一轮吃 3
-    static final float HALOGEN_INPUT = 12f;      // 一轮吃 12
+    static final float HALOGEN_INPUT = 0.2f;      // 一轮吃 12
     static final float GEL_OUTPUT = 12f;         // 一轮产 12
 
     public UdBioreactorFactory(String name) {

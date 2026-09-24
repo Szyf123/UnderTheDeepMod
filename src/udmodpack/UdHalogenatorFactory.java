@@ -28,7 +28,7 @@ public class UdHalogenatorFactory extends Block {
     static final int   SIZE = 3;
 
     static final int   FRANCIUM_INPUT = 2;        // 一轮吃 2
-    static final float WATER_INPUT = 24f;         // 一轮吃 24
+    static final float WATER_INPUT = 0.4f;         // 一轮吃 24
     static final float HALOGEN_OUTPUT = 15f;      // 一轮产 15
 
     public UdHalogenatorFactory(String name) {

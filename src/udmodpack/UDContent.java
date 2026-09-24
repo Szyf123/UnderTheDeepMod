@@ -322,7 +322,7 @@ public class UDContent {
 
         // === 自定义钻头 ===
         hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
-            Liquids.water, 1.6f,
+            seaweedOil, 0.8f,
             iron, 800f,
             tuberculosis, 800f,
             silicaSand, 460f,
@@ -330,7 +330,7 @@ public class UDContent {
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
         );
         electricalDrill = new UdCustomDrill("ud-dri-electrical", 3, 3, 60f, 90f, 1.2f, 0.12f,
-            Liquids.water, 2.4f,
+            seaweedOil, 1.8f,
             aurum, 760f,
             nickel, 660f,
             iron, 450f,
@@ -340,7 +340,7 @@ public class UDContent {
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
         );
         preciseDrill = new UdCustomDrill("ud-dri-precise", 4, 4, 60f, 90f, 2f, 0.2f,
-            Liquids.water, 4.2f,
+            seaweedOil, 3f,
             francium, 680f,
             aurum, 420f,
             nickel, 380f,
@@ -400,7 +400,7 @@ public class UDContent {
             2.4f,
             1f,
             10, new ItemStack[]{ new ItemStack(iron, 2), new ItemStack(manganese, 2) },
-            20f, new LiquidStack[]{ new LiquidStack(freshWater, 6f) },
+            20f, new LiquidStack[]{ new LiquidStack(freshWater, 0.1f) },
             new ItemStack[]{ new ItemStack(manganeseSteel, 1) },
             null,
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
@@ -452,7 +452,7 @@ public class UDContent {
             2f,
             1f,
             20, new ItemStack[]{ new ItemStack(manganeseSteel, 4), new ItemStack(aurum, 2) },
-            30f, new LiquidStack[]{ new LiquidStack(rootGel, 12f) },
+            30f, new LiquidStack[]{ new LiquidStack(rootGel, 0.2f) },
             new ItemStack[]{ new ItemStack(shieldAlloy, 1) },
             null,
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
@@ -475,7 +475,7 @@ public class UDContent {
             5.2f,
             1f,
             30, new ItemStack[]{ new ItemStack(nickel, 5), new ItemStack(advancedChip, 3) },
-            30f, new LiquidStack[]{ new LiquidStack(atomicHalogen, 8f) },
+            30f, new LiquidStack[]{ new LiquidStack(atomicHalogen, 0.12f) },
             new ItemStack[]{ new ItemStack(rlyehAlloy, 1) },
             null,
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
@@ -492,7 +492,7 @@ public class UDContent {
             10f,
             1f,
             100, new ItemStack[]{ new ItemStack(precCoreFight, 50), new ItemStack(precCoreExist, 50), new ItemStack(precCoreMigrate, 50) },
-            50f, new LiquidStack[]{ new LiquidStack(rootGel, 15f), new LiquidStack(atomicHalogen, 28f) },
+            50f, new LiquidStack[]{ new LiquidStack(rootGel, 0.25f), new LiquidStack(atomicHalogen, 0.4f) },
             new ItemStack[]{ new ItemStack(precCoreFinal, 1) },
             null,
             new ItemStack[]{ new ItemStack(Items.copper, 10) },

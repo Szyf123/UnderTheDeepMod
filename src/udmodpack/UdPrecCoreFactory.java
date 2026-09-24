@@ -64,7 +64,7 @@ public class UdPrecCoreFactory extends Block {
         this.consPower = new ConsumePower(10f / 60f, 0f, false);
         this.consumeBuilder.add(consPower);
 
-        recipes.add(new Recipe("战斗核心合成",
+        recipes.add(new Recipe("争斗核心合成",
             new ItemStack[]{
                 new ItemStack(wreckageAlloy, 300),
                 new ItemStack(wreckageGlass, 100),
@@ -82,7 +82,7 @@ public class UdPrecCoreFactory extends Block {
             new ItemStack[]{ new ItemStack(precCoreMigrate, 1) },
             900f
         ));
-        recipes.add(new Recipe("生存核心合成",
+        recipes.add(new Recipe("存续核心合成",
             new ItemStack[]{
                 new ItemStack(wreckageAlloy, 100),
                 new ItemStack(wreckageGlass, 100),
