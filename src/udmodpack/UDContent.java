@@ -95,9 +95,13 @@ public class UDContent {
     public static UdBasicOre nickelOre;
     public static UdBasicOre franciumOre;
 
+    public static UdOverlayFloor wreckageOre;
+
     public static UdCustomDrill hydraulicDrill;
     public static UdCustomDrill electricalDrill;
     public static UdCustomDrill preciseDrill;
+
+    public static UdHarvester researchStation;
 
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
@@ -320,6 +324,9 @@ public class UDContent {
         nickelOre = new UdBasicOre("ud-nickel-ore", nickel, 4);
         franciumOre = new UdBasicOre("ud-francium-ore", francium, 4);
 
+        // === 覆盖装饰块 ===
+        wreckageOre = new UdOverlayFloor("ud-wreckage-ore", 4, 5, 12f);
+
         // === 自定义钻头 ===
         hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
             seaweedOil, 0.8f,
@@ -349,6 +356,15 @@ public class UDContent {
             silicaSand, 180f,
             new mindustry.type.ItemStack(mindustry.content.Items.copper, 30),
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
+        );
+
+        // === 收割机（科研工作站） ===
+        researchStation = new UdHarvester("ud-research-station", 3, 5, 90f, 1.5f,
+            wreckageOre,
+            new mindustry.type.Item[]{ wreckageAlloy, wreckageGlass, wreckageFiber },
+            180f,
+            new ItemStack(mindustry.content.Items.copper, 20),
+            new ItemStack(mindustry.content.Items.lead, 15)
         );
 
         // === 装药合成厂（6配方，2x3 UI） ===
