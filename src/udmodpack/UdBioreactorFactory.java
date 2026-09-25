@@ -90,7 +90,7 @@ public class UdBioreactorFactory extends Block implements Autotiler{
 
         @Override
         public void updateTile() {
-            // 无条件输出 rootGel，不受生产状态影响
+            // 先 dump 产物腾空间（避免满了就停）
             dumpLiquid(UDContent.rootGel);
 
             if (!enabled) return;
@@ -100,7 +100,7 @@ public class UdBioreactorFactory extends Block implements Autotiler{
             if (items.get(UDContent.root) < ROOT_INPUT) return;
             if (liquids.get(UDContent.atomicHalogen) < HALOGEN_INPUT) return;
 
-            // 输出空间检查（独立容量：gel 不能超 GEL_CAP）
+            // 输出空间检查
             if (liquids.get(UDContent.rootGel) + GEL_OUTPUT > GEL_CAP) return;
 
             progress += (delta() / 60f) * efficiency;
@@ -142,6 +142,8 @@ public class UdBioreactorFactory extends Block implements Autotiler{
         public boolean shouldConsume() {
             if (items.get(UDContent.root) < ROOT_INPUT) return false;
             if (liquids.get(UDContent.atomicHalogen) < HALOGEN_INPUT) return false;
+            // 输出满了 → 停消耗（ConsumeLiquids 会停止自动扣液体）
+            // 但 acceptLiquid 不受此影响，管道仍可继续送入液体
             if (liquids.get(UDContent.rootGel) + GEL_OUTPUT > GEL_CAP) return false;
             return enabled;
         }

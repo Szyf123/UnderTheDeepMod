@@ -22,6 +22,7 @@ public class UDModMain extends Mod {
     @Override
     public void loadContent() {
         UDContent.registerAll();
+        // 地板感染配对
         addFloorPair(UDContent.shallowBasic, UDContent.shallowBasicInfectious);
         addFloorPair(UDContent.shallowSand, UDContent.shallowSandInfectious);
         addFloorPair(UDContent.deepBasic, UDContent.deepBasicInfectious);
@@ -30,5 +31,8 @@ public class UDModMain extends Mod {
         addFloorPair(UDContent.abyssalHole, UDContent.abyssalHoleInfectious);
         InfectionManager.init();
         DepthManager.init();
+
+        // 星球必须在所有 Block/Item/Liquid 之后初始化
+        UDPlanet.init();
     }
 }

@@ -321,14 +321,14 @@ public class UDContent {
 
         // === 矿石叠加块 ===
         ironOre = new UdBasicOre("ud-iron-ore", iron, 4);
-        aurumOre = new UdBasicOre("ud-aurum-ore", aurum, 4);
         tuberculosisOre = new UdBasicOre("ud-tuberculosis-ore", tuberculosis, 4);
+        aurumOre = new UdBasicOre("ud-aurum-ore", aurum, 4);
         nickelOre = new UdBasicOre("ud-nickel-ore", nickel, 4);
         franciumOre = new UdBasicOre("ud-francium-ore", francium, 4);
 
         // === 覆盖装饰块 ===
         wreckageOre = new UdOverlayFloor("ud-wreckage-ore", 4, 5, 12f);
-        seaweedOre = new UdOverlayFloor("ud-seaweed-ore", 3, 3, 15f);
+        seaweedOre = new UdOverlayFloor("ud-seaweed-ore", 3, 1, 12f);
 
         // === 自定义钻头 ===
         hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
@@ -497,7 +497,7 @@ public class UDContent {
         new UdDepthDrivenFactory(
             "ud-fac-rlyeh-foundry",
             4,
-            0.2f, 0.025f, 0.9f,
+            0.2f, 0.05f, 0.9f,
             5.2f,
             1f,
             30, new ItemStack[]{ new ItemStack(nickel, 5), new ItemStack(advancedChip, 3) },

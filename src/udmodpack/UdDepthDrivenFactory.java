@@ -176,6 +176,10 @@ public class UdDepthDrivenFactory extends Block implements Autotiler{
 
         @Override
         public void updateTile() {
+            // ---- 先导出已存产物（避免容器满导致生产停滞）----
+            if (itemOutputs != null) for (ItemStack s : itemOutputs) dump(s.item);
+            if (liquidOutputs != null) for (LiquidStack s : liquidOutputs) dumpLiquid(s.liquid);
+
             // ---- 深度效率 ----
             float depthSum = 0f;
             for (int dx = 0; dx < size; dx++)
@@ -218,7 +222,7 @@ public class UdDepthDrivenFactory extends Block implements Autotiler{
             progress += (delta() / 60f) * actualEfficiency * effMul;
             if (progress >= craftTime) craft();
 
-            // ---- 自动导出 ----
+            // ---- craft 后再导一次 ----
             if (itemOutputs != null) for (ItemStack s : itemOutputs) dump(s.item);
             if (liquidOutputs != null) for (LiquidStack s : liquidOutputs) dumpLiquid(s.liquid);
         }
