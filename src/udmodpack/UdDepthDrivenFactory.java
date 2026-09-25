@@ -8,6 +8,8 @@ import mindustry.type.ItemStack;
 import mindustry.type.Liquid;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
+import mindustry.world.Tile;
+import mindustry.world.blocks.Autotiler;
 import mindustry.world.consumers.ConsumeItems;
 import mindustry.world.consumers.ConsumeLiquids;
 import mindustry.world.consumers.ConsumePower;
@@ -38,7 +40,7 @@ import static mindustry.Vars.*;
  *    liquidOutputs,                                     // 产出液体，null = 无
  *    buildCost, buildTime                               // 建造需求
  */
-public class UdDepthDrivenFactory extends Block {
+public class UdDepthDrivenFactory extends Block implements Autotiler{
 
     // ---- 深度效率参数 ----
     public final float baseEfficiency;
@@ -128,6 +130,13 @@ public class UdDepthDrivenFactory extends Block {
             }
         }
 
+        // 有液体输出 → 通知原版管道（Conduit.blends 查 outputsLiquid）
+        if (liquidOutputs != null && liquidOutputs.length > 0) {
+            this.outputsLiquid = true;
+        }
+
+        // 有物品输出 → 原版传送带（Conveyor.blends 通过 hasItems=outputsItems 已经覆盖）
+
         // ---- 输入白名单 ----
         if (itemInputs != null && itemInputs.length > 0) {
             this.inputItems = new mindustry.type.Item[itemInputs.length];
@@ -141,6 +150,22 @@ public class UdDepthDrivenFactory extends Block {
         } else {
             this.inputLiquids = new Liquid[0];
         }
+    }
+
+    /** 工厂液体/物品全方向输入，不是只在正面，所以 rotatedOutput=false。 */
+    @Override
+    public boolean rotatedOutput(int x, int y){
+        return false;
+    }
+
+    /** 原版管道/传送带接触本工厂时查此方法决定是否画拐角。
+     *  基于 **输出类型** 决定接受什么：输出液体 → 接受管道；输出物品 → 接受传送带。
+     *  输入类型不影响视觉连接判定（输入通过 acceptItem/acceptLiquid 物理层处理）。 */
+    @Override
+    public boolean blends(Tile tile, int rotation, int otherx, int othery, int otherrot, Block otherblock){
+        boolean acceptLiquid = liquidOutputs != null && liquidOutputs.length > 0;
+        boolean acceptItem = itemOutputs != null && itemOutputs.length > 0;
+        return (acceptLiquid && otherblock.hasLiquids) || (acceptItem && otherblock.outputsItems());
     }
 
     // ========================================================================

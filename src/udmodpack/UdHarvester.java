@@ -16,6 +16,7 @@ import mindustry.type.Item;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.Tile;
+import mindustry.world.blocks.Autotiler;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.meta.BlockGroup;
 
@@ -28,7 +29,7 @@ import static mindustry.Vars.tilesize;
  * 扫描区域：以建筑前方 offset = (size + drillsize) / 2 格为中心的 drillsize×drillsize 矩形
  * （要求 size 和 drillsize 奇偶性一致，保证 offset 和中心坐标都是整数）。
  */
-public class UdHarvester extends Block {
+public class UdHarvester extends Block implements Autotiler{
 
     /** 扫描范围边长（tiles），必须和 size 奇偶性一致 */
     public int drillSize;
@@ -80,6 +81,19 @@ public class UdHarvester extends Block {
                        ItemStack... reqs) {
         this(name, size, drillSize, buildTime, powerConsume, targetBlock, drillItems, drilltime);
         if(reqs.length > 0) requirements(Category.production, reqs);
+    }
+
+    /** UdHarvester 物品通过 dump() 全方向输出，不是只朝正面，所以 rotatedOutput=false。 */
+    @Override
+    public boolean rotatedOutput(int x, int y){
+        return false;
+    }
+
+    /** 原版传送带/物品桥接触 UdHarvester 时会查 UdHarvester.blends() 决定是否画拐角。 */
+    @Override
+    public boolean blends(Tile tile, int rotation, int otherx, int othery, int otherrot, Block otherblock){
+        // 接受任何有物品能力的邻居（传送带、物品桥等）
+        return otherblock.outputsItems() || otherblock.acceptsItems;
     }
 
     /** 鼠标拿起放置预览时，显示前方扫描范围虚线框。 */

@@ -96,12 +96,14 @@ public class UDContent {
     public static UdBasicOre franciumOre;
 
     public static UdOverlayFloor wreckageOre;
+    public static UdOverlayFloor seaweedOre;
 
     public static UdCustomDrill hydraulicDrill;
     public static UdCustomDrill electricalDrill;
     public static UdCustomDrill preciseDrill;
 
     public static UdHarvester researchStation;
+    public static UdHarvester seaweedHarvester;
 
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
@@ -326,6 +328,7 @@ public class UDContent {
 
         // === 覆盖装饰块 ===
         wreckageOre = new UdOverlayFloor("ud-wreckage-ore", 4, 5, 12f);
+        seaweedOre = new UdOverlayFloor("ud-seaweed-ore", 3, 3, 15f);
 
         // === 自定义钻头 ===
         hydraulicDrill = new UdCustomDrill("ud-dri-hydraulic", 2, 1, 60f, 90f, 0.5f, 0.05f,
@@ -362,6 +365,13 @@ public class UDContent {
         researchStation = new UdHarvester("ud-research-station", 3, 5, 90f, 1.5f,
             wreckageOre,
             new mindustry.type.Item[]{ wreckageAlloy, wreckageGlass, wreckageFiber },
+            180f,
+            new ItemStack(mindustry.content.Items.copper, 20),
+            new ItemStack(mindustry.content.Items.lead, 15)
+        );
+        seaweedHarvester = new UdHarvester("ud-seaweed-harvester", 2, 4, 90f, 1.5f,
+            seaweedOre,
+            new mindustry.type.Item[]{ seaweedBundle },
             180f,
             new ItemStack(mindustry.content.Items.copper, 20),
             new ItemStack(mindustry.content.Items.lead, 15)

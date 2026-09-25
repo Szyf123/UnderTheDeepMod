@@ -8,6 +8,8 @@ import mindustry.type.ItemStack;
 import mindustry.type.Liquid;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
+import mindustry.world.Tile;
+import mindustry.world.blocks.Autotiler;
 import mindustry.world.consumers.ConsumeItems;
 import mindustry.world.consumers.ConsumeLiquids;
 import mindustry.world.consumers.ConsumePower;
@@ -17,7 +19,7 @@ import mindustry.world.meta.BuildVisibility;
 /** 卤素发生器：无深度效率，两种液体独立库存。
  *  3 francium + 12 freshWater → 12 atomicHalogen，耗电 1W，耗时 1.6s。
  */
-public class UdHalogenatorFactory extends Block {
+public class UdHalogenatorFactory extends Block implements Autotiler{
 
     // ---- 生产参数（硬编码） ----
     static final float CRAFT_TIME = 2.8f;
@@ -63,6 +65,20 @@ public class UdHalogenatorFactory extends Block {
         this.consumeBuilder.add(new ConsumeLiquids(new LiquidStack[]{
             new LiquidStack(UDContent.freshWater, WATER_INPUT)
         }));
+        // 产出 atomicHalogen 液体 → 通知原版管道
+        this.outputsLiquid = true;
+    }
+
+    /** 工厂液体/物品全方向输入，不是只在正面，所以 rotatedOutput=false。 */
+    @Override
+    public boolean rotatedOutput(int x, int y){
+        return false;
+    }
+
+    /** 原版管道接触本工厂时查此方法决定是否画拐角。 */
+    @Override
+    public boolean blends(Tile tile, int rotation, int otherx, int othery, int otherrot, Block otherblock){
+        return otherblock.hasLiquids;
     }
 
     // ========================================================================

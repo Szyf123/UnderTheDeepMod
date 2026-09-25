@@ -12,11 +12,14 @@ import arc.struct.Seq;
 import arc.util.Time;
 import mindustry.Vars;
 import mindustry.game.EventType.WorldLoadEvent;
+import mindustry.game.EventType.TileOverlayChangeEvent;
 import mindustry.graphics.Layer;
 import mindustry.graphics.MultiPacker;
 import mindustry.world.Tile;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OverlayFloor;
+
+import java.util.Iterator;
 
 /**
  * 通用叠加地板：变体 + 可选动画帧 + 底部阴影，不绑定 itemDrop。
@@ -57,15 +60,27 @@ public class UdOverlayFloor extends OverlayFloor {
             }
         });
 
+        // 编辑器/运行时动态放矿块：新 overlay 是 UdOverlayFloor 且启用动画 → 加入列表
+        Events.on(TileOverlayChangeEvent.class, e -> {
+            if(e.overlay instanceof UdOverlayFloor uf && uf.updateRender(e.tile)){
+                if(!animatedTiles.contains(e.tile)) animatedTiles.add(e.tile);
+            }
+        });
+
         if(!registeredTick){
             registeredTick = true;
             Events.run(mindustry.game.EventType.Trigger.draw, () -> {
                 if(animatedTiles.isEmpty()) return;
                 Draw.z(Layer.floor + 1f);
-                for(Tile tile : animatedTiles){
-                    UdOverlayFloor uf = (UdOverlayFloor) tile.overlay();
-                    if(uf == null) continue;
-                    uf.renderUpdateImpl(tile);
+                // 用 iterator 遍历，同时安全移除已失效的 tile（overlay 被删除/改为 AirBlock）
+                Iterator<Tile> it = animatedTiles.iterator();
+                while(it.hasNext()){
+                    Tile tile = it.next();
+                    if(tile.overlay() instanceof UdOverlayFloor uf){
+                        uf.renderUpdateImpl(tile);
+                    } else {
+                        it.remove();
+                    }
                 }
             });
         }
@@ -137,10 +152,15 @@ public class UdOverlayFloor extends OverlayFloor {
     /**
      * chunk 缓存里永远画静态 fallback（variantRegions）。
      * animFrames==1：走 Floor.load() 默认的 nameN
-     * animFrames>1：走 load() 手动覆盖的 nameN-1
+     * animFrames>1 且 animFrameTime>0（启用动画）：重写为空——动画帧完全由 Trigger.draw
+     *   在 Layer.floor+1f 绘制，不让帧 1 常驻 chunk FBO 形成"两层叠加"的视觉问题。
+     * animFrames>1 但 animFrameTime<=0（有动画贴图但不启用动画）：画帧 1 兜底。
      */
     @Override
     public void drawBase(Tile tile) {
+        // 启用动画时让 chunk FBO 的 overlay 层留空，完全由 Trigger.draw 接管
+        if(animFrames > 1 && animFrameTime > 0f) return;
+
         int variant = Mathf.randomSeed(tile.pos(), 0, Math.max(0, variantRegions.length - 1));
         Draw.rect(variantRegions[variant], tile.worldx(), tile.worldy());
     }
