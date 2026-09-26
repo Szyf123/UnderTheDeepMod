@@ -23,7 +23,7 @@ public class UDPlanet {
         // 2. clipRadius（正数才能通过 frustum 检测）
         deep.clipRadius = 4f;
         // 3. 大气参数（完全对齐 Serpulo）
-        deep.atmosphereColor = Color.valueOf("3399FF");
+        deep.atmosphereColor = Color.valueOf("4A6880");
         deep.atmosphereRadIn = 0.02f;
         deep.atmosphereRadOut = 0.3f;
         deep.hasAtmosphere = true;

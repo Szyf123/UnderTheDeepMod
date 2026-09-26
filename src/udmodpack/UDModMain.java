@@ -34,5 +34,9 @@ public class UDModMain extends Mod {
 
         // 星球必须在所有 Block/Item/Liquid 之后初始化
         UDPlanet.init();
+
+        // 最后：注册科技树（原版 SerpuloTechTree.load() 已先于模组执行，
+        // Blocks.coreNucleus.techNode 此时已存在）
+        UDTechTree.load();
     }
 }

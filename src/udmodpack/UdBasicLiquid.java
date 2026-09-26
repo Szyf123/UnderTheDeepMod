@@ -19,7 +19,8 @@ import mindustry.type.Liquid;
  *  - barColor (Color) 条块颜色
  *  - lightColor (Color) 发光颜色
  *  - canStayOn (ObjectSet<Liquid>) 可以共存的液体
- */
+ *
+ * 科技树挂接统一在 UDTechTree.load() 中构建，不在此类处理。 */
 public class UdBasicLiquid extends Liquid {
 
     public UdBasicLiquid(String name, Color color, boolean gas, float temperature, float heatCapacity, float viscosity, boolean coolant, boolean capPuddles) {

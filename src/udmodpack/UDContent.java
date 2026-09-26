@@ -115,6 +115,9 @@ public class UDContent {
     // 液体地板
     public static UdBasicLiquidFloor deepHalogenOcean;
 
+    /** 拉莱耶星球科技树根节点占位。在 ContentLoader 执行期间创建以便注册。 */
+    public static UdTechPlaceholder rlyehPlaceholder;
+
     public static void registerAll() {
         // 测试：虚空地板（tileable 平铺，solid=true + drownTime=30f 内置）
         udTestVoidFloor = new UdVoidFloor("ud-test-void-floor");
@@ -477,7 +480,7 @@ public class UDContent {
             1.0f, -0.05f, 0.05f,
             2f,
             1f,
-            20, new ItemStack[]{ new ItemStack(manganeseSteel, 4), new ItemStack(aurum, 2) },
+            20, new ItemStack[]{ new ItemStack(nickel, 4), new ItemStack(aurum, 2) },
             30f, new LiquidStack[]{ new LiquidStack(rootGel, 0.2f) },
             new ItemStack[]{ new ItemStack(shieldAlloy, 1) },
             null,
@@ -524,5 +527,10 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
+
+        // === 拉莱耶星球科技树根节点占位 ===
+        // 必须在 ContentLoader 执行期间创建，否则不会被注册到 Content 列表。
+        // planet 先传 null（UDPlanet.deep 此时还没创建），UDTechTree.load() 里补赋值。
+        rlyehPlaceholder = new UdTechPlaceholder("ud-rlyeh", true);
     }
 }

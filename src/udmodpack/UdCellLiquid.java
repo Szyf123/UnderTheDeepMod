@@ -12,7 +12,8 @@ import mindustry.type.Liquid;
  *  - removeScaling (float) 吸走目标液体的比例，默认 0.25f
  *  还继承 Liquid 的公开字段：blockReactive / moveThroughBlocks / incinerable / effect /
  *  particleEffect / particleSpacing / boilPoint / vaporEffect / hidden / barColor / lightColor / canStayOn
- */
+ *
+ * 科技树挂接统一在 UDTechTree.load() 中构建，不在此类处理。 */
 public class UdCellLiquid extends CellLiquid {
 
     public UdCellLiquid(String name, Color color,
