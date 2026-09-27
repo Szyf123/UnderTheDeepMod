@@ -42,8 +42,40 @@ public class UDTechTree {
         rlyehRoot.planet = UDPlanet.deep;
         UDPlanet.deep.techTree = rlyehRoot;
 
-        // === 物品和液体 ===
-        // === 第1层（iron 挂拉莱耶根下） ===
+        // === 钻头 ===
+        TechNode hydraulicDrillNode             = new TechNode(rlyehRoot, hydraulicDrill, ItemStack.empty);
+        TechNode electricalDrillNode            = new TechNode(hydraulicDrillNode, electricalDrill, ItemStack.empty);
+        TechNode preciseDrillNode               = new TechNode(electricalDrillNode, preciseDrill, ItemStack.empty);
+
+        // === 收割机 ===
+        TechNode seaweedHarvesterNode           = new TechNode(hydraulicDrillNode, seaweedHarvester, ItemStack.empty);
+        TechNode researchStationNode            = new TechNode(hydraulicDrillNode, researchStation, ItemStack.empty);
+        TechNode precCoreFactoryNode            = new TechNode(researchStationNode, precCoreFactory, ItemStack.empty);
+        TechNode advancedCoreFactoryNode        = new TechNode(precCoreFactoryNode, advancedCoreFactory, ItemStack.empty);
+
+        // === 工厂 ===
+        // === 第1层 ===
+        TechNode sorterNode                     = new TechNode(rlyehRoot, sorter, ItemStack.empty);
+        // === 第2层 ===
+        TechNode gunpowderFactoryNode           = new TechNode(sorterNode, gunpowderFactory, ItemStack.empty);
+        TechNode glassKilnNode                  = new TechNode(sorterNode, glassKiln, ItemStack.empty);
+        TechNode etchingNode                    = new TechNode(sorterNode, etching, ItemStack.empty);
+        TechNode compressorNode                 = new TechNode(sorterNode, compressor, ItemStack.empty);
+        // === 第3层 ===
+        TechNode ionizationNode                 = new TechNode(glassKilnNode, ionization, ItemStack.empty);
+        TechNode advancedEtchingNode            = new TechNode(etchingNode, advancedEtching, ItemStack.empty);
+        TechNode chargerNode                    = new TechNode(compressorNode, charger, ItemStack.empty);
+        // === 第4层 ===
+        TechNode fermentationTankNode           = new TechNode(ionizationNode, fermentationTank, ItemStack.empty);
+        TechNode rlyehFoundryNode               = new TechNode(chargerNode, rlyehFoundry, ItemStack.empty);
+        // === 第5层 ===
+        TechNode bioreactorNode                 = new TechNode(fermentationTankNode, bioreactor, ItemStack.empty);
+        TechNode incubatorNode                  = new TechNode(fermentationTankNode, incubator, ItemStack.empty);
+        // === 第6层 ===
+        TechNode halogenatorNode                = new TechNode(bioreactorNode, halogenator, ItemStack.empty);
+
+        // === 物品 ===
+        // === 第1层 ===
         TechNode ironNode                       = new TechNode(rlyehRoot, iron, ItemStack.empty);
         // === 第2层 ===
         TechNode tuberculosisNode               = new TechNode(ironNode, tuberculosis, ItemStack.empty);
@@ -51,7 +83,6 @@ public class UDTechTree {
         TechNode nickelNode                     = new TechNode(ironNode, nickel, ItemStack.empty);
         TechNode rootNode                       = new TechNode(ironNode, root, ItemStack.empty);
         TechNode seaweedBundleNode              = new TechNode(ironNode, seaweedBundle, ItemStack.empty);
-        TechNode freshWaterNode                 = new TechNode(ironNode, freshWater, ItemStack.empty);
         // === 第3层 ===
         TechNode manganeseNode                  = new TechNode(tuberculosisNode, manganese, ItemStack.empty);
         TechNode pressedGlassNode               = new TechNode(silicaSandNode, pressedGlass, ItemStack.empty);
@@ -59,14 +90,13 @@ public class UDTechTree {
         TechNode wreckageAlloyNode              = new TechNode(rootNode, wreckageAlloy, ItemStack.empty);
         TechNode wreckageGlassNode              = new TechNode(rootNode, wreckageGlass, ItemStack.empty);
         TechNode wreckageFiberNode              = new TechNode(rootNode, wreckageFiber, ItemStack.empty);
-        TechNode seaweedOilNode                 = new TechNode(seaweedBundleNode, seaweedOil, ItemStack.empty);
         TechNode gunpowderChipNode              = new TechNode(seaweedBundleNode, gunpowderChip, ItemStack.empty);
         TechNode gunpowderManganeseSteelNode    = new TechNode(seaweedBundleNode, gunpowderManganeseSteel, ItemStack.empty);
         TechNode gunpowderAdvancedChipNode      = new TechNode(seaweedBundleNode, gunpowderAdvancedChip, ItemStack.empty);
         TechNode gunpowderShieldAlloyNode       = new TechNode(seaweedBundleNode, gunpowderShieldAlloy, ItemStack.empty);
         TechNode gunpowderFranciumNode          = new TechNode(seaweedBundleNode, gunpowderFrancium, ItemStack.empty);
         TechNode gunpowderRlyehAlloyNode        = new TechNode(seaweedBundleNode, gunpowderRlyehAlloy, ItemStack.empty);
-        TechNode atomicHalogenNode              = new TechNode(freshWaterNode, atomicHalogen, ItemStack.empty);
+        TechNode precCoreFinalNode              = new TechNode(rootNode, precCoreFinal, ItemStack.empty);
         // === 第4层 ===
         TechNode chipNode                       = new TechNode(manganeseNode, chip, ItemStack.empty);
         TechNode manganeseSteelNode             = new TechNode(manganeseNode, manganeseSteel, ItemStack.empty);
@@ -74,13 +104,17 @@ public class UDTechTree {
         TechNode precCoreFightNode              = new TechNode(wreckageAlloyNode, precCoreFight, ItemStack.empty);
         TechNode precCoreMigrateNode            = new TechNode(wreckageGlassNode, precCoreMigrate, ItemStack.empty);
         TechNode precCoreExistNode              = new TechNode(wreckageFiberNode, precCoreExist, ItemStack.empty);
-        TechNode rootGelNode                    = new TechNode(atomicHalogenNode, rootGel, ItemStack.empty);
         // === 第5层 ===
-        TechNode advancedChipNode  = new TechNode(chipNode, advancedChip, ItemStack.empty);
-        TechNode shieldAlloyNode   = new TechNode(manganeseSteelNode, shieldAlloy, ItemStack.empty);
-        TechNode precCoreFinalNode = new TechNode(rootGelNode, precCoreFinal, ItemStack.empty);
+        TechNode advancedChipNode               = new TechNode(chipNode, advancedChip, ItemStack.empty);
+        TechNode shieldAlloyNode                = new TechNode(manganeseSteelNode, shieldAlloy, ItemStack.empty);
         // === 第6层 ===
-        TechNode rlyehAlloyNode = new TechNode(shieldAlloyNode, rlyehAlloy, ItemStack.empty);
+        TechNode rlyehAlloyNode                 = new TechNode(shieldAlloyNode, rlyehAlloy, ItemStack.empty);
+
+        // === 液体 ===
+        TechNode freshWaterNode                 = new TechNode(rlyehRoot, freshWater, ItemStack.empty);
+        TechNode seaweedOilNode                 = new TechNode(freshWaterNode, seaweedOil, ItemStack.empty);
+        TechNode atomicHalogenNode              = new TechNode(freshWaterNode, atomicHalogen, ItemStack.empty);
+        TechNode rootGelNode                    = new TechNode(atomicHalogenNode, rootGel, ItemStack.empty);
 
         arc.util.Log.info("[UDTechTree] Tech tree built successfully.");
     }

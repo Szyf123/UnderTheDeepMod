@@ -22,7 +22,7 @@ import static arc.math.Mathf.*;
 public class RadialLayout {
 
     /** 每层向外的距离增量（像素），默认 100，用户可调。 */
-    public static float DepthDelta = 100f;
+    public static float DepthDelta = 130f;
 
     /** Count 临时缓存——每次 layout 时创建。 */
     static final ObjectMap<TechTreeNode, Integer> counts = new ObjectMap<>();

@@ -15,23 +15,23 @@ import mindustry.ui.dialogs.ResearchDialog.TechTreeNode;
 /**
  * 同心圆布局 + 背景圆环 + 直线连线 hook。
  *
- * 核心策略：
- *   savedChildren 只在第一次 children 完整时填充，永远不清空。
- *   findMaxDepth + RadialLayout.layout + 画直线 → 都用 savedChildren（原始完整结构）。
- *   真正画的时候用空 children（阻止原版折线）。
+ * 核心策略（每帧循环）：
+ *   1. 只要 node.children 非空 → 存入 savedChildren（捕获 vanilla 初始化时机）
+ *   2. 用 savedChildren 做所有事（算深度、布局、画直线）
+ *   3. 清空 node.children（阻止原版折线）
+ *   不做任何 close/reopen 状态管理——vanilla 重建树时 children 会重新变非空，下一帧自动捕获。
  */
 public class RadialLayoutHook {
 
-    public static int ringCount = 5;
+    public static int ringCount = 6;
     public static Color ringColor = new Color(0.3f, 0.5f, 0.8f, 0.25f);
     public static float ringStroke = 2.5f;
 
     static int currentMaxDepth = 0;
-    /** node → 原始 children 数组。只在首次（children 完整时）填充，之后永久复用。*/
     static final ObjectMap<TechTreeNode, TechTreeNode[]> savedChildren = new ObjectMap<>();
     static Element bgActor = null;
-    /** 标记 savedChildren 是否已填好原始数据 */
-    static boolean savedChildrenValid = false;
+    /** 完整初始化过至少一帧 → bgActor 才真正画东西 */
+    static boolean ready = false;
 
     public static void init() {
         Core.app.post(RadialLayoutHook::tick);
@@ -45,9 +45,11 @@ public class RadialLayoutHook {
                 return;
             }
             if(!Vars.ui.research.isShown()) {
-                // Dialog 关掉了，重置标记，下次重新填
-                savedChildrenValid = false;
-                savedChildren.clear();
+                ready = false;
+                if(bgActor != null && bgActor.parent != null) {
+                    bgActor.remove();
+                }
+                bgActor = null;
                 Core.app.post(RadialLayoutHook::tick);
                 return;
             }
@@ -61,38 +63,34 @@ public class RadialLayoutHook {
                 return;
             }
 
-            // ===== 1. 仅在 children 完整时保存一次原始结构 =====
-            // 第一次进来或重置后：root.children 应该还是原版完整数组
-            // 用 root.children.length > 0 作为判断（根节点不可能没子节点）
-            if(!savedChildrenValid && root.children != null && root.children.length > 0) {
-                savedChildren.clear();
-                for(TechTreeNode n : Vars.ui.research.nodes) {
+            // ===== 每帧：把当前非空的 children 存入 savedChildren =====
+            // 不管是首次打开还是 close→reopen 后 vanilla 重建的 fresh children
+            for(TechTreeNode n : Vars.ui.research.nodes) {
+                if(n.children != null && n.children.length > 0) {
                     savedChildren.put(n, n.children);
                 }
-                savedChildrenValid = true;
-                Log.info("[RadialLayoutHook] Saved original children for " + savedChildren.size + " nodes");
             }
 
-            if(!savedChildrenValid) {
-                // children 还是空的（原版还没初始化完），等下一帧
+            // ===== 没有可用的 savedChildren？等 vanilla 初始化完 =====
+            if(!savedChildren.containsKey(root)) {
                 Core.app.post(RadialLayoutHook::tick);
                 return;
             }
 
-            // ===== 2. 用 savedChildren 算最大深度（永远正确）=====
+            // ===== 用 savedChildren 算最大深度 =====
             currentMaxDepth = findMaxDepthFromSaved(root);
 
-            // ===== 3. 用 savedChildren 做同心圆布局（RadialLayout 需要遍历完整 children）=====
+            // ===== 用 savedChildren 做同心圆布局 =====
             RadialLayout.layoutWithSaved(root, savedChildren);
 
-            // ===== 4. 清空 children → 原版 drawChildren 拿不到 children → 折线消失 =====
+            // ===== 清空 children → 原版 drawChildren 折线消失 =====
             for(TechTreeNode n : Vars.ui.research.nodes) {
-                if(n.children.length > 0) {
-                    n.children = new TechTreeNode[0];
-                }
+                n.children = new TechTreeNode[0];
             }
 
-            // ===== 5. bounds =====
+            ready = true;
+
+            // ===== bounds =====
             float minx = 0f, miny = 0f, maxx = 0f, maxy = 0f;
             for(TechTreeNode n : Vars.ui.research.nodes) {
                 if(!n.visible) continue;
@@ -113,7 +111,6 @@ public class RadialLayoutHook {
         Core.app.post(RadialLayoutHook::tick);
     }
 
-    /** 从 savedChildren 递归算深度（不依赖 node.children）*/
     static int findMaxDepthFromSaved(TechTreeNode node) {
         TechTreeNode[] children = savedChildren.get(node);
         if(children == null || children.length == 0) return 0;
@@ -133,6 +130,7 @@ public class RadialLayoutHook {
 
             @Override
             public void draw() {
+                if(!ready) return;
                 try {
                     mindustry.ui.dialogs.ResearchDialog.View v =
                         Vars.ui.research == null ? vRef : Vars.ui.research.view;
@@ -141,14 +139,14 @@ public class RadialLayoutHook {
                     float cx = v.panX + v.getWidth() / 2f;
                     float cy = v.panY + v.getHeight() / 2f;
 
-                    // ===== 1. 同心圆环 =====
+                    // 同心圆环
                     int rings = Math.min(ringCount, currentMaxDepth + 1);
                     Lines.stroke(Scl.scl(ringStroke), ringColor);
                     for(int i = 1; i <= rings; i++) {
                         Lines.circle(cx, cy, i * RadialLayout.DepthDelta);
                     }
 
-                    // ===== 2. 直线连线（用保存的 children 数组）=====
+                    // 直线连线
                     for(TechTreeNode node : Vars.ui.research.nodes) {
                         if(!node.visible) continue;
                         TechTreeNode[] origChildren = savedChildren.get(node);

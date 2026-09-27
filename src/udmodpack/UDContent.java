@@ -105,6 +105,29 @@ public class UDContent {
     public static UdHarvester researchStation;
     public static UdHarvester seaweedHarvester;
 
+    public static UdPrecCoreFactory precCoreFactory;
+    public static UdDepthDrivenFactory advancedCoreFactory;
+
+    public static UdDepthDrivenFactory sorter;
+    public static UdGunpowderFactory gunpowderFactory;
+    public static UdDepthDrivenFactory glassKiln;
+    public static UdDepthDrivenFactory etching;
+    public static UdDepthDrivenFactory compressor;
+    public static UdDepthDrivenFactory ionization;
+    public static UdDepthDrivenFactory advancedEtching;
+    public static UdDepthDrivenFactory charger;
+    public static UdDepthDrivenFactory fermentationTank;
+    public static UdDepthDrivenFactory rlyehFoundry;
+    public static UdBioreactorFactory bioreactor;
+    public static UdRootFactory incubator;
+    public static UdHalogenatorFactory halogenator;
+
+    // == 减压场 ===
+    public static UDDepressurization depressurizationBasic;
+    public static UDDepressurization depressurizationAdvanced;
+    public static UDDepressurization depressurizationUltimate;
+    public static UDInfectionLauncher infectionLauncher;
+
     // 边界虚空地板（环境墙）— 复刻 metal-tiles 4方向 autotile
     public static UdVoidFloor udTestVoidFloor;
 
@@ -226,8 +249,7 @@ public class UDContent {
 
         // === 减压场（三种变体） ===
 
-        // 基础减压场：2x2，净化12格，只耗电 3W，每秒尝试 4 格，成功率 60%
-        new UDDepressurization(
+        depressurizationBasic = new UDDepressurization(
             "ud-depressurization-basic",
             2, 12,
             new ItemStack[]{
@@ -241,8 +263,7 @@ public class UDContent {
             12, 0.7f         // cureTilesPerSecond, cureChance
         );
 
-        // 高级减压场：3x3，净化21格，耗电 6W + 每秒铜 1，每秒尝试 8 格，成功率 70%
-        new UDDepressurization(
+        depressurizationAdvanced = new UDDepressurization(
             "ud-depressurization-advanced",
             3, 21,
             new ItemStack[]{
@@ -257,8 +278,7 @@ public class UDContent {
             24, 0.85f
         );
 
-        // 终极减压场：4x4，净化40格，耗电 12W + 每秒铜 2 + 每秒水 4，每秒尝试 16 格，成功率 80%
-        new UDDepressurization(
+        depressurizationUltimate = new UDDepressurization(
             "ud-depressurization-ultimate",
             4, 40,
             new ItemStack[]{
@@ -275,7 +295,7 @@ public class UDContent {
         );
 
         // === 感染发射器（基础占位，后续扩展） ===
-        new UDInfectionLauncher("ud-infection-launcher");
+        infectionLauncher = new UDInfectionLauncher("ud-infection-launcher");
 
         // === 自定义液体 ===
         freshWater = new UdBasicLiquid("ud-fresh-water", Color.valueOf("#B2E9FA"), true, 0.5f, 0.4f, 0.5f, true, true);
@@ -364,14 +384,7 @@ public class UDContent {
             new mindustry.type.ItemStack(mindustry.content.Items.lead, 20)
         );
 
-        // === 收割机（科研工作站） ===
-        researchStation = new UdHarvester("ud-research-station", 3, 5, 90f, 1.5f,
-            wreckageOre,
-            new mindustry.type.Item[]{ wreckageAlloy, wreckageGlass, wreckageFiber },
-            180f,
-            new ItemStack(mindustry.content.Items.copper, 20),
-            new ItemStack(mindustry.content.Items.lead, 15)
-        );
+        // === 收割机 ===
         seaweedHarvester = new UdHarvester("ud-seaweed-harvester", 2, 4, 90f, 1.5f,
             seaweedOre,
             new mindustry.type.Item[]{ seaweedBundle },
@@ -379,11 +392,18 @@ public class UDContent {
             new ItemStack(mindustry.content.Items.copper, 20),
             new ItemStack(mindustry.content.Items.lead, 15)
         );
+        researchStation = new UdHarvester("ud-research-station", 3, 5, 90f, 1.5f,
+            wreckageOre,
+            new mindustry.type.Item[]{ wreckageAlloy, wreckageGlass, wreckageFiber },
+            180f,
+            new ItemStack(mindustry.content.Items.copper, 20),
+            new ItemStack(mindustry.content.Items.lead, 15)
+        );
 
         // === 装药合成厂（6配方，2x3 UI） ===
-        new UdGunpowderFactory("ud-gunpowder-factory");
+        gunpowderFactory = new UdGunpowderFactory("ud-gunpowder-factory");
 
-        new UdDepthDrivenFactory(
+        ionization = new UdDepthDrivenFactory(
             "ud-fac-Ionization",
             2,
             1.0f, 0f, 0.05f,
@@ -396,7 +416,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        sorter = new UdDepthDrivenFactory(
             "ud-fac-sorter",
             2,
             1.0f, -0.1f, 0.05f,
@@ -409,7 +429,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        etching = new UdDepthDrivenFactory(
             "ud-fac-etching",
             2,
             1.0f, -0.1f, 0.65f,
@@ -422,7 +442,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        compressor = new UdDepthDrivenFactory(
             "ud-fac-compressor",
             2,
             0.6f, 0.05f, 0.05f,
@@ -435,7 +455,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        fermentationTank = new UdDepthDrivenFactory(
             "ud-fac-fermentation-tank",
             2,
             0.6f, 0.05f, 0.05f,
@@ -448,7 +468,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        glassKiln = new UdDepthDrivenFactory(
             "ud-fac-glass-kiln",
             2,
             0.35f, 0.08f, 0.05f,
@@ -461,7 +481,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        advancedEtching = new UdDepthDrivenFactory(
             "ud-fac-advanced-etching",
             3,
             1.0f, -0.05f, 0.5f,
@@ -474,7 +494,7 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
-        new UdDepthDrivenFactory(
+        charger = new UdDepthDrivenFactory(
             "ud-fac-charger",
             3,
             1.0f, -0.05f, 0.05f,
@@ -489,15 +509,13 @@ public class UDContent {
         );
 
         // === 培养机 ===
-        new UdRootFactory("ud-fac-incubator");
+        incubator = new UdRootFactory("ud-fac-incubator");
 
-        // === 生物反应器 ===
-        new UdBioreactorFactory("ud-fac-bioreactor");
+        bioreactor = new UdBioreactorFactory("ud-fac-bioreactor");
 
-        // === 原子卤化釜 ===
-        new UdHalogenatorFactory("ud-fac-halogenator");
+        halogenator = new UdHalogenatorFactory("ud-fac-halogenator");
 
-        new UdDepthDrivenFactory(
+        rlyehFoundry = new UdDepthDrivenFactory(
             "ud-fac-rlyeh-foundry",
             4,
             0.2f, 0.05f, 0.9f,
@@ -511,10 +529,10 @@ public class UDContent {
             90f
         );
 
-        // === 精准核心合成厂（多配方工厂） ===
-        new UdPrecCoreFactory("ud-prec-core-factory");
+        // === 核心合成厂（多配方工厂） ===
+        precCoreFactory = new UdPrecCoreFactory("ud-prec-core-factory");
 
-        new UdDepthDrivenFactory(
+        advancedCoreFactory = new UdDepthDrivenFactory(
             "ud-advanced-core-factory",
             4,
             0.2f, 0.025f, 0.9f,
