@@ -104,6 +104,7 @@ public class UDContent {
 
     public static UdHarvester researchStation;
     public static UdHarvester seaweedHarvester;
+    public static UdRootHarvester rootHarvester;
 
     public static UdPrecCoreFactory precCoreFactory;
     public static UdDepthDrivenFactory advancedCoreFactory;
@@ -137,6 +138,11 @@ public class UDContent {
 
     // 液体地板
     public static UdBasicLiquidFloor deepHalogenOcean;
+
+    // ===== 洋流天气（12 方向，30° 间隔） =====
+    public static UdCurrentWeather current0, current30, current60, current90,
+                                  current120, current150, current180, current210,
+                                  current240, current270, current300, current330;
 
     /** 拉莱耶星球科技树根节点占位。在 ContentLoader 执行期间创建以便注册。 */
     public static UdTechPlaceholder rlyehPlaceholder;
@@ -399,6 +405,12 @@ public class UDContent {
             new ItemStack(mindustry.content.Items.copper, 20),
             new ItemStack(mindustry.content.Items.lead, 15)
         );
+        rootHarvester = new UdRootHarvester("ud-root-harvester", 2, 6, 90f, 1.5f,
+            root,
+            180f,
+            new ItemStack(mindustry.content.Items.copper, 20),
+            new ItemStack(mindustry.content.Items.lead, 15)
+        );
 
         // === 装药合成厂（6配方，2x3 UI） ===
         gunpowderFactory = new UdGunpowderFactory("ud-gunpowder-factory");
@@ -545,6 +557,21 @@ public class UDContent {
             new ItemStack[]{ new ItemStack(Items.copper, 10) },
             90f
         );
+
+        // === 洋流天气：12 方向，30° 间隔 ===
+        // 角度约定：0°=向右(+X), 90°=向下(+Y)
+        current0   = new UdCurrentWeather("ud-current-0",   0f,   1.0f);
+        current30  = new UdCurrentWeather("ud-current-30",  30f,  1.0f);
+        current60  = new UdCurrentWeather("ud-current-60",  60f,  1.0f);
+        current90  = new UdCurrentWeather("ud-current-90",  90f,  1.0f);
+        current120 = new UdCurrentWeather("ud-current-120", 120f, 1.0f);
+        current150 = new UdCurrentWeather("ud-current-150", 150f, 1.0f);
+        current180 = new UdCurrentWeather("ud-current-180", 180f, 1.0f);
+        current210 = new UdCurrentWeather("ud-current-210", 210f, 1.0f);
+        current240 = new UdCurrentWeather("ud-current-240", 240f, 1.0f);
+        current270 = new UdCurrentWeather("ud-current-270", 270f, 1.0f);
+        current300 = new UdCurrentWeather("ud-current-300", 300f, 1.0f);
+        current330 = new UdCurrentWeather("ud-current-330", 330f, 1.0f);
 
         // === 拉莱耶星球科技树根节点占位 ===
         // 必须在 ContentLoader 执行期间创建，否则不会被注册到 Content 列表。

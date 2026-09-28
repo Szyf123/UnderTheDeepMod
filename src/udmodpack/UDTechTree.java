@@ -49,6 +49,7 @@ public class UDTechTree {
 
         // === 收割机 ===
         TechNode seaweedHarvesterNode           = new TechNode(hydraulicDrillNode, seaweedHarvester, ItemStack.empty);
+        TechNode rootHarvesterNode              = new TechNode(seaweedHarvesterNode, rootHarvester, ItemStack.empty);
         TechNode researchStationNode            = new TechNode(hydraulicDrillNode, researchStation, ItemStack.empty);
         TechNode precCoreFactoryNode            = new TechNode(researchStationNode, precCoreFactory, ItemStack.empty);
         TechNode advancedCoreFactoryNode        = new TechNode(precCoreFactoryNode, advancedCoreFactory, ItemStack.empty);
@@ -73,6 +74,12 @@ public class UDTechTree {
         TechNode incubatorNode                  = new TechNode(fermentationTankNode, incubator, ItemStack.empty);
         // === 第6层 ===
         TechNode halogenatorNode                = new TechNode(bioreactorNode, halogenator, ItemStack.empty);
+
+        // === 减压场 ===
+        TechNode depressurizationBasicNode       = new TechNode(rlyehRoot, depressurizationBasic, ItemStack.empty);
+        TechNode depressurizationAdvancedNode    = new TechNode(depressurizationBasicNode, depressurizationAdvanced, ItemStack.empty);
+        TechNode depressurizationUltimateNode    = new TechNode(depressurizationAdvancedNode, depressurizationUltimate, ItemStack.empty);
+        TechNode infectionLauncherNode           = new TechNode(depressurizationBasicNode, infectionLauncher, ItemStack.empty);
 
         // === 物品 ===
         // === 第1层 ===

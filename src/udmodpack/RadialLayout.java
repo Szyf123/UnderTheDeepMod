@@ -21,8 +21,10 @@ import static arc.math.Mathf.*;
  */
 public class RadialLayout {
 
-    /** 每层向外的距离增量（像素），默认 100，用户可调。 */
-    public static float DepthDelta = 130f;
+    /** 每层向外的距离增量（像素），默认 150，用户可调。 */
+    public static float DepthDelta = 150f;
+    /** 节点半径基础偏移（像素）。所有节点（含根节点）的半径都加上这个值。 */
+    public static float ringBaseRadius = 100f;
 
     /** Count 临时缓存——每次 layout 时创建。 */
     static final ObjectMap<TechTreeNode, Integer> counts = new ObjectMap<>();
@@ -80,7 +82,7 @@ public class RadialLayout {
             node.y = 0;
         } else {
             float centerAngle = startAngle + arcAngle / 2f;
-            float radius = depth * DepthDelta;
+            float radius = ringBaseRadius + depth * DepthDelta;
             float rad = centerAngle * degreesToRadians;
             node.x = radius * cos(rad);
             node.y = radius * sin(rad);
@@ -105,7 +107,7 @@ public class RadialLayout {
             node.y = 0;
         } else {
             float centerAngle = startAngle + arcAngle / 2f;
-            float radius = depth * DepthDelta;
+            float radius = ringBaseRadius + depth * DepthDelta;
             float rad = centerAngle * degreesToRadians;
             node.x = radius * cos(rad);
             node.y = radius * sin(rad);

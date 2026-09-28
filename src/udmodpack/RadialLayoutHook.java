@@ -143,7 +143,7 @@ public class RadialLayoutHook {
                     int rings = Math.min(ringCount, currentMaxDepth + 1);
                     Lines.stroke(Scl.scl(ringStroke), ringColor);
                     for(int i = 1; i <= rings; i++) {
-                        Lines.circle(cx, cy, i * RadialLayout.DepthDelta);
+                        Lines.circle(cx, cy, RadialLayout.ringBaseRadius + i * RadialLayout.DepthDelta);
                     }
 
                     // 直线连线

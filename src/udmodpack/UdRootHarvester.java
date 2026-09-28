@@ -1,12 +1,10 @@
 package udmodpack;
 
-import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.math.Mathf;
 import arc.math.geom.Geometry;
 import arc.struct.Seq;
-import arc.util.Log;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
 import mindustry.Vars;
@@ -18,48 +16,32 @@ import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import mindustry.world.blocks.Autotiler;
-import mindustry.world.blocks.environment.Floor;
 import mindustry.world.meta.BlockGroup;
 
 import static mindustry.Vars.tilesize;
 
 /**
- * 收割机（Harvester）：方向性开采建筑。检测前方 drillsize×drillsize 范围内的 overlay 地块，
- * 匹配 targetblock 类型，每 drilltime/n 帧随机产出一个 drillitem。
- *
- * 几何约束（两个正方形边与边相邻、中心在同一行/列）：
- *   perp = (size - drillSize) / 2   ← 整数除法，奇偶一致保证结果为整数
- *   rot 0 (右 +X):  sx0 = bx + size,        sy0 = by + perp
- *   rot 1 (下 +Y):  sx0 = bx + perp,        sy0 = by + size
- *   rot 2 (左 -X):  sx0 = bx - drillSize,   sy0 = by + perp
- *   rot 3 (上 -Y):  sx0 = bx + perp,        sy0 = by - drillSize
- *
- * 绘制参考 UnderTheDeepMod 正常版本：
- *   drawPlace: x*tilesize + offset (= tile world center), 加 frontOffset*tilesize
- *   drawSelect: this.x (= Building world center), 加 frontOffset*tilesize
+ * 根须收割机（RootHarvester）。绘制方式参考 UnderTheDeepMod 正常版本。
  */
-public class UdHarvester extends Block implements Autotiler{
+public class UdRootHarvester extends Block implements Autotiler{
 
     public int drillSize;
-    public Floor targetBlock;
-    public Item[] drillItems;
+    public Item drillItem;
     public float drilltime;
     public float powerConsume;
 
-    /** 扫描区中心距建筑中心的 tile 数 = (size + drillSize) / 2 */
     public int frontOffset() {
         return (size + drillSize) / 2;
     }
 
-    public UdHarvester(String name, int size, int drillSize, float buildTime, float powerConsume,
-                       Floor targetBlock, Item[] drillItems, float drilltime) {
+    public UdRootHarvester(String name, int size, int drillSize, float buildTime, float powerConsume,
+                           Item drillItem, float drilltime) {
         super(name);
         this.size = size;
         this.drillSize = drillSize;
         this.buildTime = buildTime;
         this.powerConsume = powerConsume;
-        this.targetBlock = targetBlock;
-        this.drillItems = drillItems;
+        this.drillItem = drillItem;
         this.drilltime = drilltime;
 
         this.update = true;
@@ -72,18 +54,17 @@ public class UdHarvester extends Block implements Autotiler{
         if(powerConsume > 0f) {
             this.hasPower = true;
             consumePowerCond(powerConsume, build -> {
-                UdHarvesterBuild hb = (UdHarvesterBuild) build;
+                UdRootHarvesterBuild hb = (UdRootHarvesterBuild) build;
                 return hb.matchedCount > 0 && hb.items.total() < hb.block.itemCapacity;
             });
         }
 
-        this.buildType = UdHarvesterBuild::new;
+        this.buildType = UdRootHarvesterBuild::new;
     }
 
-    public UdHarvester(String name, int size, int drillSize, float buildTime, float powerConsume,
-                       Floor targetBlock, Item[] drillItems, float drilltime,
-                       ItemStack... reqs) {
-        this(name, size, drillSize, buildTime, powerConsume, targetBlock, drillItems, drilltime);
+    public UdRootHarvester(String name, int size, int drillSize, float buildTime, float powerConsume,
+                           Item drillItem, float drilltime, ItemStack... reqs) {
+        this(name, size, drillSize, buildTime, powerConsume, drillItem, drilltime);
         if(reqs.length > 0) requirements(Category.production, reqs);
     }
 
@@ -95,14 +76,6 @@ public class UdHarvester extends Block implements Autotiler{
         return otherblock.outputsItems() || otherblock.acceptsItems;
     }
 
-    /**
-     * 扫描区 tile 边界（含两端）。
-     *
-     * @param ax 建筑左下角锚点 tileX
-     * @param ay 建筑左下角锚点 tileY
-     * @param rotation 0=右 1=下 2=左 3=上
-     * @return int[4] = { sx0, sy0, sx1, sy1 }
-     */
     public int[] scanTileBounds(int ax, int ay, int rotation) {
         int d = drillSize;
         int perp = (size - d) / 2;
@@ -117,12 +90,6 @@ public class UdHarvester extends Block implements Autotiler{
         return new int[]{sx0, sy0, sx0 + d - 1, sy0 + d - 1};
     }
 
-    /**
-     * 鼠标拿起放置预览时，显示前方扫描范围虚线框。
-     * 参考 UnderTheDeepMod 正常版本：
-     *   x * tilesize + offset = tile world 中心
-     *   再加 frontOffset() * tilesize 得扫描中心
-     */
     @Override
     public void drawPlace(int x, int y, int rotation, boolean valid) {
         super.drawPlace(x, y, rotation, valid);
@@ -136,13 +103,12 @@ public class UdHarvester extends Block implements Autotiler{
         Drawf.dashSquare(Color.white.cpy().a(0.5f), scanCx, scanCy, drillSize * tilesize);
     }
 
-    public class UdHarvesterBuild extends Building {
+    public class UdRootHarvesterBuild extends Building {
 
         public int matchedCount;
         public final Seq<Tile> matchedTiles = new Seq<>();
         public float progress;
 
-        /** 扫描区中心距建筑中心的 tile 数 */
         public int frontOffset() {
             return (size + drillSize) / 2;
         }
@@ -152,35 +118,24 @@ public class UdHarvester extends Block implements Autotiler{
             rescan();
         }
 
-        /**
-         * 重新扫描前方区域。
-         * scanTileBounds 需要锚点 tile。
-         * tileX() 返回中心 tile → 锚点 = 中心 - (size-1)/2
-         */
         public void rescan() {
             matchedTiles.clear();
             matchedCount = 0;
 
-            // 锚点 tile（左下角）
             int ax = tileX() - (size - 1) / 2;
             int ay = tileY() - (size - 1) / 2;
-            UdHarvester b = (UdHarvester) block;
+            UdRootHarvester b = (UdRootHarvester) block;
             int[] bounds = b.scanTileBounds(ax, ay, rotation);
 
             for(int tx = bounds[0]; tx <= bounds[2]; tx++) {
                 for(int ty = bounds[1]; ty <= bounds[3]; ty++) {
                     Tile t = Vars.world.tile(tx, ty);
-                    if(t != null && t.overlay() == targetBlock) {
+                    if(t != null && t.floor() instanceof UdBasicFloor && ((UdBasicFloor) t.floor()).isInfected) {
                         matchedTiles.add(t);
                         matchedCount++;
                     }
                 }
             }
-        }
-
-        public Item pickRandomDrillItem() {
-            int idx = Mathf.random(drillItems.length - 1);
-            return drillItems[idx];
         }
 
         @Override
@@ -191,7 +146,7 @@ public class UdHarvester extends Block implements Autotiler{
                 dump(items.first());
             }
 
-            if(matchedCount <= 0 || drillItems == null || drillItems.length == 0 || efficiency <= 0f) return;
+            if(matchedCount <= 0 || drillItem == null || efficiency <= 0f) return;
             if(items.total() >= itemCapacity) return;
 
             float interval = drilltime / matchedCount;
@@ -200,7 +155,7 @@ public class UdHarvester extends Block implements Autotiler{
             if(progress >= interval) {
                 int amount = (int)(progress / interval);
                 for(int i = 0; i < amount && items.total() < itemCapacity; i++) {
-                    offload(pickRandomDrillItem());
+                    offload(drillItem);
                 }
                 progress %= interval;
             }
@@ -220,14 +175,9 @@ public class UdHarvester extends Block implements Autotiler{
             }
         }
 
-        /**
-         * 选中已放置建筑时，显示扫描范围虚线框。
-         * 参考 UnderTheDeepMod 正常版本：
-         *   this.x = Building world 中心坐标（已经是 world 中心！）
-         */
         @Override
         public void drawSelect() {
-            UdHarvester block = (UdHarvester) this.block;
+            UdRootHarvester block = (UdRootHarvester) this.block;
             int f = block.frontOffset();
             float scanCx = x + Geometry.d4x(rotation) * f * tilesize;
             float scanCy = y + Geometry.d4y(rotation) * f * tilesize;
