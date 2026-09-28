@@ -6,6 +6,7 @@ import mindustry.content.Liquids;
 import mindustry.entities.Effect;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.CacheLayer;
+import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 
@@ -105,6 +106,8 @@ public class UDContent {
     public static UdHarvester researchStation;
     public static UdHarvester seaweedHarvester;
     public static UdRootHarvester rootHarvester;
+
+    public static UdPowCurrent basicCurrentGenerator;
 
     public static UdPrecCoreFactory precCoreFactory;
     public static UdDepthDrivenFactory advancedCoreFactory;
@@ -411,6 +414,14 @@ public class UDContent {
             new ItemStack(mindustry.content.Items.copper, 20),
             new ItemStack(mindustry.content.Items.lead, 15)
         );
+
+        basicCurrentGenerator = new UdPowCurrent("ud-pow-basic-current", 1, 0.1f) {{
+            buildTime = 60f;
+            requirements(Category.power, new ItemStack[]{
+                new ItemStack(mindustry.content.Items.copper, 10),
+                new ItemStack(mindustry.content.Items.lead, 8)
+            });
+        }};
 
         // === 装药合成厂（6配方，2x3 UI） ===
         gunpowderFactory = new UdGunpowderFactory("ud-gunpowder-factory");
