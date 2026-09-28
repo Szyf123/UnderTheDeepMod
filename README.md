@@ -1,38 +1,26 @@
-# Mindustry Java Mod Template
-A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
+# 深渊之下 [Under The Deep] 模组
+### 一个mindustry的java模组，使用官方模板
 
-## Building for Desktop Testing
+#### 新增机制
 
-1. Install JDK **17**.
-2. Run `gradlew jar` [1].
-3. Your mod jar will be in the `build/libs` directory. **Only use this version for testing on desktop. It will not work with Android.**
-To build an Android-compatible version, you need the Android SDK. You can either let Github Actions handle this, or set it up yourself. See steps below.
+##### 深度
+包含三类地形，表示不同深度海底。
+压力影响特定建筑的效率。
+玩家可以通过减压场将范围内的深度降低为浅海深度。
 
-## Building through Github Actions
+##### 根脉感染
+自然地形有各自的感染状态，感染的地块会缓慢蔓延并低频伤害其上的建筑。
+玩家可以通过减压场净化范围内的感染地块。
+从感染地块上可以采集根脉物品，用于工业生产或战斗。
 
-This repository is set up with Github Actions CI to automatically build the mod for you every commit. This requires a Github repository, for obvious reasons.
-To get a jar file that works for every platform, do the following:
-1. Make a Github repository with your mod name, and upload the contents of this repo to it. Perform any modifications necessary, then commit and push. 
-2. Check the "Actions" tab on your repository page. Select the most recent commit in the list. If it completed successfully, there should be a download link under the "Artifacts" section. 
-3. Click the download link (should be the name of your repo). Import the jar contained within in Mindustry. This version should work both on Android and Desktop.
+##### 弹药技能
+可合成六种装药，模组单位可消耗携带的物品强化自身攻击。
 
-## Building Locally
+##### 科研
+进攻区块内置废墟核心建筑。
+玩家可与废墟核心交互开启考验，通过考验可解锁科技、剧情与后续主线区块。
+考验范围两个等级，等级一检测物品产能效率，对应生产科技，等级二召唤额外波次，对应战斗科技。
 
-Building locally takes more time to set up, but shouldn't be a problem if you've done Android development before.
-1. Download the Android SDK, unzip it and set the `ANDROID_HOME` environment variable to its location.
-2. Make sure you have API level 30 installed, as well as any recent version of build tools (e.g. 30.0.1)
-3. Add a build-tools folder to your PATH. For example, if you have `30.0.1` installed, that would be `$ANDROID_HOME/build-tools/30.0.1`.
-4. Run `gradlew deploy`. If you did everything correctlly, this will create a jar file in the `build/libs` directory that can be run on both Android and desktop. 
+#### 剧情
 
-## Adding Dependencies
-
-Please note that all dependencies on Mindustry, Arc or its submodules **must be declared as compileOnly in Gradle**. Never use `implementation` for core Mindustry or Arc dependencies. 
-
-- `implementation` **places the entire dependency in the jar**, which is, in most mod dependencies, very undesirable. You do not want the entirety of the Mindustry API included with your mod.
-- `compileOnly` means that the dependency is only around at compile time, and not included in the jar.
-
-Only use `implementation` if you want to package another Java library *with your mod*, and that library is not present in Mindustry already.
-
---- 
-
-*[1]* *On Linux/Mac it's `./gradlew`, but if you're using Linux I assume you know how to run executables properly anyway.* 
+##### 我还没写完，争取不要和别的模组或游戏太重复了，敬请期待
