@@ -81,6 +81,9 @@ public class UDTechTree {
         TechNode depressurizationUltimateNode    = new TechNode(depressurizationAdvancedNode, depressurizationUltimate, ItemStack.empty);
         TechNode infectionLauncherNode           = new TechNode(depressurizationBasicNode, infectionLauncher, ItemStack.empty);
 
+        // === 发电 ===
+        TechNode basicCurrentGeneratorNode       = new TechNode(rlyehRoot, basicCurrentGenerator, ItemStack.empty);
+
         // === 物品 ===
         // === 第1层 ===
         TechNode ironNode                       = new TechNode(rlyehRoot, iron, ItemStack.empty);
